@@ -1,0 +1,154 @@
+<app-spinner *ngIf="isLoading"></app-spinner>
+<section class="master-bg">
+  <div class="container-fluid">
+      <div class="row">
+          <div class="col-md-12">
+              <div class="row">
+                  <div class="col-md-9">
+                      <h2 class="title">User Management</h2>
+                  </div>
+                  <div class="col-md-3">
+                      <div class="input-group" style="margin: 12px 0px 0px 0px;">
+                          <input type="text" class="form-control" id="searchglobal" placeholder="Search"
+                              (input)="getsearchlist($event.target.value)" autocomplete="off" name="search"
+                              style="height:31px;">
+                          <div class="input-group-btn">
+                              <button class="btn btn-default" style="background: #eee;height:31px;cursor: not-allowed;" type="submit"><i
+                                      class="glyphicon glyphicon-search"></i></button>
+                          </div>
+                          <!-- <datalist id="partdata">
+                                      <ng-container *ngFor="let list of ppssearchlist ">
+                                          <option value={{list.ppssearch}}>{{list.ppssearch}}</option>
+                                      </ng-container>
+                                  </datalist> -->
+                      </div>
+                  </div>
+              </div>
+              <div class="row">
+                  <section class="bg">
+                      <div class="col-md-4">
+                          <form [formGroup]="AddusermanagerForm">
+                              <div class="row">
+                                  <div class="col-md-12">
+                                      <div class="form-group" style="margin: 0px;">
+                                          <label class="head">Short ID<span class="red">*</span></label>
+  
+                                          <input type="text" class="form-control " colls="4" formControlName="shortid"
+                                              autocomplete="off" id="l3Updateadd" placeholder="Search Short ID"
+                                              list="l3usernameid" #smshortids>&nbsp;
+                                          <span id="userbutton" class="btn btn-sm btn-primary"
+                                              (click)="Assignenamekeydown(smshortids.value)">Go</span>
+                                          <!-- <datalist id="l3usernameid">
+                                              <ng-container *ngFor="let list of Assignelist ">
+                                                  <option value={{list}}></option>
+                                              </ng-container>
+                                          </datalist> -->
+  
+                                          <small class="text-danger"
+                                              *ngIf="!AddusermanagerForm.controls.shortid.valid && AddusermanagerForm.controls.shortid.touched">Short
+                                              ID is required</small>
+  
+                                      </div>
+                                      <div class="form-group">
+                                          <label class="head">User Name<span class="red">*</span></label>
+                                          <input type="text" class="form-control" placeholder="User Name" formControlName="username" readonly>
+                                          <small class="text-danger"
+                                              *ngIf="!AddusermanagerForm.controls.username.valid && AddusermanagerForm.controls.username.touched">User
+                                              Name is required</small>
+                                      </div>
+                                      <div class="form-group">
+                                          <label class="head">Email<span class="red">*</span></label>
+                                          <input type="text" class="form-control" placeholder="Email" formControlName="emailid">
+                                          <small class="text-danger"
+                                              *ngIf="!AddusermanagerForm.controls.emailid.valid && AddusermanagerForm.controls.emailid.touched">Email
+                                              is required</small>
+                                      </div>
+                                      <div class="form-group">
+                                          <label class="head">Department<span class="red">*</span></label>
+                                          <select class="form-control" formControlName="finalresponseid"
+                                              (change)="department($event.target.value)">
+                                              <option value="null" selected disabled>Select Department</option>
+                                              <ng-container *ngFor="let data of getListdata">
+                                                  <option value={{data.id}}>{{data.finalresponsename}}</option>
+                                              </ng-container>
+                                          </select>
+                                          <small class="text-danger"
+                                              *ngIf="!AddusermanagerForm.controls.finalresponseid.valid && AddusermanagerForm.controls.finalresponseid.touched">Department
+                                              is required</small>
+                                      </div>
+                                  </div>
+                                  <div class="col-md-12">
+                                      <button class="back-btn" (click)="save()">Submit</button>
+                                  </div>
+                              </div>
+                          </form>
+  
+                      </div>
+                      <div class="col-md-8">
+                          <table class="table responsive">
+                              <thead>
+                                  <tr style="background: #fff;">
+                                      <th>S.No</th>
+                                      <th>Short ID</th>
+                                      <th>User Name</th>
+                                      <th>Email</th>
+                                      <th>Department Name</th>
+                                      <!-- <th>Edit</th> -->
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                  <ng-container>
+                                      <tr
+                                          *ngFor="let data of getUserListdata |  paginate: { itemsPerPage: 10, currentPage: p1,id: 'one'}let i = index">
+                                          <td>{{((p1- 1) * 10 )+ (i+1)}}</td>
+                                          <td>{{(data.shortid != null) ?data.shortid : '-' }}</td>
+                                          <td>{{(data.username != null) ?data.username : '-' }}</td>
+                                          <td>{{(data.emailid != null) ?data.emailid : '-' }}</td>
+                                          <td>{{(data.finalresponsename != null) ?data.finalresponsename : '-' }}</td>
+                                          <!-- <td><img style="cursor: pointer;" src="assets/images/edit-img.png" (click)="edit(data.id)"></td> -->
+                                      </tr>
+                                  </ng-container>
+                              </tbody>
+                          </table>
+                          <pagination-controls style="text-align: right;margin: 0px 0px 80px 0px;" *ngIf="getUserListdata?.length!=0"
+                          (pageChange)="p1 = $event" #api id="one">
+                      </pagination-controls>
+                      <h4 *ngIf="getUserListdata.length==0" style="text-align: center;width: 100%;margin-top: 5%;">
+                          No data Available
+                      </h4>
+                      </div>
+                  </section>
+              </div>
+          </div>
+      </div>
+  </div>
+  </section>
+  <!-- save modal -->
+  
+  
+  <div class="modal fade" id="submit" role="dialog" data-backdrop="static" data-keyboard="false">
+      <div class="modal-dialog modal-sm">
+          <div class="modal-content">
+              <div class="modal-body">
+                  <div class="row">
+                      <div class="col-md-10">
+                          <p class="modalHeader">Submit</p>
+                      </div>
+                      <div class="col-md-2">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      </div>
+                      <br>
+                      <div class="col-md-12">
+                          <p> Are you sure want to submit ?</p>
+                      </div>
+                  </div>
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-sm btn-primary new-ticket"
+                      (click)="confirmAdduserManager()">Yes</button>
+                  <button type="button" class="btn btn-sm btn-primary new-ticket" data-dismiss="modal">No </button>
+                  
+              </div>
+          </div>
+      </div>
+  </div>

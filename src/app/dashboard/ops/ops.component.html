@@ -1,0 +1,1320 @@
+<app-spinner *ngIf="isLoading"></app-spinner>
+<div class="container-fluid">
+  <div class="row">
+      <div class="col-md-12">
+          <h4 class="header">OPS</h4>
+      </div>
+  </div>
+  <div class="row">
+      <div class="col-md-3">
+          <ul id="list-group" class="list-group">
+              <li id="list-item2" class="list-item" (click)="pending()" style="padding: 0px 0px 0px 16px;">
+                  Final Responsibility Pending<span class="error"></span></li>
+              <!-- <li id="list-item3" class="list-item" (click)="ppspending()" style="padding: 0px 0px 0px 16px;">Supplier Name Pending<span class="error"></span></li> -->
+          </ul>
+      </div>
+      <div class="col-md-4"></div>
+      <div class="col-md-5">
+          <div class="row">
+              <div class="col-sm-3">
+                  <!-- <button type="button" class="btn btn-primary new-ticket" (click)="filter()" style="width: 100%;padding: 5px 4px;">
+                      <img src="assets/images/filter-img.png" style="padding: 0px 3px;">Filter List <span
+                          class="filter">10</span>
+                  </button> -->
+              </div>
+              <div class="col-sm-4">
+                  <ng-container *ngIf="fileuploadtrue && opsListdata.length != 0">
+                      <button routerLink="../Pending-Error-List" type="button" class="btn btn-primary new-ticket"
+                          style="width: 72%;" (click)="uploadType()">
+                          <img style="padding: 0px 0px 0px 0px;width: 18px;margin: 0px 5px 0px 0px;"
+                              src="assets/images/upload-file.png">Upload
+                      </button> <img (click)="downloadFile('OPS-Pending List.xlsx')"
+                          src="assets/images/download-xlsx.jpg"
+                          style="width: 27px;margin: 0px 0px 0px 5px;cursor: pointer;float: right;">
+                  </ng-container>
+              </div>
+              <div class="col-sm-5 nopadding">
+                  <form [formGroup]="opssearchForm">
+                      <div class="input-group">
+                          <input type="text" class="form-control" id="searchglobal" placeholder="Search"
+                              (input)="getsearchlist($event.target.value)" autocomplete="off"
+                              formControlName="opssearch" name="search" style="height:31px;">
+                          <div class="input-group-btn">
+                              <button class="btn btn-default" style="background: #eee;height:31px;" type="submit"><i
+                                      class="glyphicon glyphicon-search"></i></button>
+                          </div>
+                          <!-- <datalist id="partdata">
+                                                  <ng-container *ngFor="let list of ppssearchlist ">
+                                                      <option value={{list.ppssearch}}>{{list.ppssearch}}</option>
+                                                  </ng-container>
+                                              </datalist> -->
+                      </div>
+                  </form>
+              </div>
+          </div>
+
+      </div>
+  </div>
+  <div class="row">
+      <div class="col-md-12" *ngIf="opspendingtrue">
+          <ng-container>
+              <div class="table-responsive vendortable" *ngIf="(opsListdata.length>0) || (opsListdata?.length==0 && selectedvalue)">
+                  <table class="table table-striped home-table">
+                      <thead>
+                          <tr class="tr-head">
+                              <th>S.No</th>
+                              <th>Month</th>
+                              <th>Date</th>
+                              <th>Model</th>
+                              <th>Loss Quantity</th>
+                              <th>Loss Time</th>
+                              <th>Loss Description</th>
+                              <th colspan="2">Initial Responsibility</th>
+                              <th>PPS Main Cluster</th>
+                              <th>PPS Sub Cluster</th>
+                              <th>OPS Main Cluster</th>
+                              <th>OPS Sub Cluster</th>
+                              <th colspan="2">Final Responsibility</th>
+                              <th>Additional Remarks</th>
+                              <th>Supplier Code</th>
+                              <th>Supplier Name</th>
+                              <th>Root Cause Analysis</th>
+                              <th>Intermediate Corrective Action</th>
+                              <th>Permanent Corrective Action</th>
+                              <th>Process Gap</th>
+                              <th>Edit</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr>
+                              <td></td>
+                              <td>
+                                  <div class="">
+                                      <div class="row">
+                                          <div class="col-lg-12 nopadding">
+                                              <div class="button-group">
+                                                  <button type="button" class="btn btn-default btn-sm dropdown-toggle"
+                                                      data-toggle="dropdown">Select
+                                                      Month
+
+                                                      <span class="caret"></span></button>
+                                                  <ul class="dropdown-menu filtermenu" style="position: absolute;
+                                          transform: translate3d(1px, 32px, 0px);
+                                          top: 0px;
+                                          left: 0px;
+                                          will-change: transform;
+                                          height: 12vh;
+                                          overflow-x: hidden;
+                                          overflow-y: auto;">
+                                                      <ng-container *ngFor="let data of monthsList;">
+                                                          <li>
+                                                              <label class="control control--checkbox">
+                                                                  {{data}}
+                                                                  <input type="checkbox" class="typeSelectBox"
+                                                                      value={{data}}
+                                                                      (change)="vendor($event,'month')">&nbsp;<span
+                                                                      id="select"></span>
+                                                                  <div class="control__indicator filterchkbox"></div>
+                                                              </label>
+                                                          </li>
+                                                      </ng-container>
+                                                  </ul>
+                                              </div>
+
+                                          </div>
+                                      </div>
+                                  </div>
+                              </td>
+                              <td></td>
+                              <td>
+                                  <div class="">
+                                      <div class="row">
+                                          <div class="col-lg-12 nopadding">
+                                              <div class="button-group">
+                                                  <button type="button" class="btn btn-default btn-sm dropdown-toggle"
+                                                      data-toggle="dropdown">Select
+                                                      Model
+
+                                                      <span class="caret"></span></button>
+                                                  <ul class="dropdown-menu filtermenu" style="position: absolute;
+                                              transform: translate3d(1px, 32px, 0px);
+                                              top: 0px;
+                                              left: 0px;
+                                              will-change: transform;
+                                              height: 12vh;
+                                              overflow-x: hidden;
+                                              overflow-y: auto;">
+                                                      <ng-container *ngFor="let data of ModelList;">
+                                                          <li>
+                                                              <label class="control control--checkbox">
+                                                                  {{data}}
+                                                                  <input type="checkbox" class="typeSelectBox"
+                                                                      value={{data}}
+                                                                      (change)="model($event,'model')">&nbsp;<span
+                                                                      id="select"></span>
+                                                                  <div class="control__indicator filterchkbox"></div>
+                                                              </label>
+                                                          </li>
+                                                      </ng-container>
+                                                  </ul>
+                                              </div>
+
+                                          </div>
+                                      </div>
+                                  </div>
+                              </td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td>
+                                  <div class="">
+                                      <div class="row">
+                                          <div class="col-lg-12 nopadding">
+                                              <div class="button-group">
+                                                  <button type="button" class="btn btn-default btn-sm dropdown-toggle"
+                                                      data-toggle="dropdown">Select
+                                                      PPS Main Cluster	
+
+                                                      <span class="caret"></span></button>
+                                                  <ul class="dropdown-menu filtermenu" style="position: absolute;
+                                              transform: translate3d(1px, 32px, 0px);
+                                              top: 0px;
+                                              left: 0px;
+                                              will-change: transform;
+                                              height: 12vh;
+                                              overflow-x: hidden;
+                                              overflow-y: auto;">
+                                                      <ng-container *ngFor="let data of PPSMainCluster;">
+                                                          <li>
+                                                              <label class="control control--checkbox">
+                                                                  {{data}}
+                                                                  <input type="checkbox" class="typeSelectBox"
+                                                                      value={{data}}
+                                                                      (change)="PPMainCluster($event,'ppsmaincluster')">&nbsp;<span
+                                                                      id="select"></span>
+                                                                  <div class="control__indicator filterchkbox"></div>
+                                                              </label>
+                                                          </li>
+                                                      </ng-container>
+                                                  </ul>
+                                              </div>
+
+                                          </div>
+                                      </div>
+                                  </div>
+                              </td>
+                              <td>
+                                  <div class="">
+                                      <div class="row">
+                                          <div class="col-lg-12 nopadding">
+                                              <div class="button-group">
+                                                  <button type="button" class="btn btn-default btn-sm dropdown-toggle"
+                                                      data-toggle="dropdown">Select
+                                                      PPS Sub Cluster
+
+                                                      <span class="caret"></span></button>
+                                                  <ul class="dropdown-menu filtermenu" style="position: absolute;
+                                              transform: translate3d(1px, 32px, 0px);
+                                              top: 0px;
+                                              left: 0px;
+                                              will-change: transform;
+                                              height: 12vh;
+                                              overflow-x: hidden;
+                                              overflow-y: auto;">
+                                                      <ng-container *ngFor="let data of PPSSubCluster;">
+                                                          <li>
+                                                              <label class="control control--checkbox">
+                                                                  {{data}}
+                                                                  <input type="checkbox" class="typeSelectBox"
+                                                                      value={{data}}
+                                                                      (change)="PPssubCluster($event,'ppssubcluster')">&nbsp;<span
+                                                                      id="select"></span>
+                                                                  <div class="control__indicator filterchkbox"></div>
+                                                              </label>
+                                                          </li>
+                                                      </ng-container>
+                                                  </ul>
+                                              </div>
+
+                                          </div>
+                                      </div>
+                                  </div>
+                              </td>
+                              <td>
+                                  <div class="">
+                                      <div class="row">
+                                          <div class="col-lg-12 nopadding">
+                                              <div class="button-group">
+                                                  <button type="button" class="btn btn-default btn-sm dropdown-toggle"
+                                                      data-toggle="dropdown">Select
+                                                      OPS Main Cluster
+
+                                                      <span class="caret"></span></button>
+                                                  <ul class="dropdown-menu filtermenu" style="position: absolute;
+                                              transform: translate3d(1px, 32px, 0px);
+                                              top: 0px;
+                                              left: 0px;
+                                              will-change: transform;
+                                              height: 12vh;
+                                              overflow-x: hidden;
+                                              overflow-y: auto;">
+                                                      <ng-container *ngFor="let data of OPSMainCluster;">
+                                                          <li>
+                                                              <label class="control control--checkbox">
+                                                                  {{data}}
+                                                                  <input type="checkbox" class="typeSelectBox"
+                                                                      value={{data}}
+                                                                      (change)="OPsmainCluster($event,'opsmaincluster')">&nbsp;<span
+                                                                      id="select"></span>
+                                                                  <div class="control__indicator filterchkbox"></div>
+                                                              </label>
+                                                          </li>
+                                                      </ng-container>
+                                                  </ul>
+                                              </div>
+
+                                          </div>
+                                      </div>
+                                  </div>
+                              </td>
+                              <td>
+                                  <div class="">
+                                      <div class="row">
+                                          <div class="col-lg-12 nopadding">
+                                              <div class="button-group">
+                                                  <button type="button" class="btn btn-default btn-sm dropdown-toggle"
+                                                      data-toggle="dropdown">Select
+                                                      OPS Sub Cluster	
+
+                                                      <span class="caret"></span></button>
+                                                  <ul class="dropdown-menu filtermenu" style="position: absolute;
+                                              transform: translate3d(1px, 32px, 0px);
+                                              top: 0px;
+                                              left: 0px;
+                                              will-change: transform;
+                                              height: 12vh;
+                                              overflow-x: hidden;
+                                              overflow-y: auto;">
+                                                      <ng-container *ngFor="let data of OPSSubCluster;">
+                                                          <li>
+                                                              <label class="control control--checkbox">
+                                                                  {{data}}
+                                                                  <input type="checkbox" class="typeSelectBox"
+                                                                      value={{data}}
+                                                                      (change)="OPssubCluster($event,'opssubcluster')">&nbsp;<span
+                                                                      id="select"></span>
+                                                                  <div class="control__indicator filterchkbox"></div>
+                                                              </label>
+                                                          </li>
+                                                      </ng-container>
+                                                  </ul>
+                                              </div>
+
+                                          </div>
+                                      </div>
+                                  </div>
+                              </td>
+                              <td>
+                                  <div class="">
+                                      <div class="row">
+                                          <div class="col-lg-12 nopadding">
+                                              <div class="button-group">
+                                                  <button type="button" class="btn btn-default btn-sm dropdown-toggle"
+                                                      data-toggle="dropdown">Select
+                                                      Final Responsibility	
+
+                                                      <span class="caret"></span></button>
+                                                  <ul class="dropdown-menu filtermenu" style="position: absolute;
+                                              transform: translate3d(1px, 32px, 0px);
+                                              top: 0px;
+                                              left: 0px;
+                                              will-change: transform;
+                                              height: 12vh;
+                                              overflow-x: hidden;
+                                              overflow-y: auto;">
+                                                      <ng-container *ngFor="let data of FinalResponse;">
+                                                          <li>
+                                                              <label class="control control--checkbox">
+                                                                  {{data}}
+                                                                  <input type="checkbox" class="typeSelectBox"
+                                                                      value={{data}}
+                                                                      (change)="Finalresponse($event,'finalresponse')">&nbsp;<span
+                                                                      id="select"></span>
+                                                                  <div class="control__indicator filterchkbox"></div>
+                                                              </label>
+                                                          </li>
+                                                      </ng-container>
+                                                  </ul>
+                                              </div>
+
+                                          </div>
+                                      </div>
+                                  </div>
+                              </td>
+                              <td></td>
+                              <td></td>
+                              <td>
+                                  <div class="">
+                                      <div class="row">
+                                          <div class="col-lg-12 nopadding">
+                                              <div class="button-group">
+                                                  <button type="button" class="btn btn-default btn-sm dropdown-toggle"
+                                                      data-toggle="dropdown">Select
+                                                      Supplier Code
+
+                                                      <span class="caret"></span></button>
+                                                  <ul class="dropdown-menu filtermenu" style="position: absolute;
+                                              transform: translate3d(1px, 32px, 0px);
+                                              top: 0px;
+                                              left: 0px;
+                                              will-change: transform;
+                                              height: 12vh;
+                                              overflow-x: hidden;
+                                              overflow-y: auto;">
+                                                      <ng-container *ngFor="let data of SupplierCode;">
+                                                          <li>
+                                                              <label class="control control--checkbox">
+                                                                  {{data}}
+                                                                  <input type="checkbox" class="typeSelectBox"
+                                                                      value={{data}}
+                                                                      (change)="SupplierCodes($event,'suppliercode')">&nbsp;<span
+                                                                      id="select"></span>
+                                                                  <div class="control__indicator filterchkbox"></div>
+                                                              </label>
+                                                          </li>
+                                                      </ng-container>
+                                                  </ul>
+                                              </div>
+
+                                          </div>
+                                      </div>
+                                  </div>
+                              </td>
+                              <td>
+                                  <div class="">
+                                      <div class="row">
+                                          <div class="col-lg-12 nopadding">
+                                              <div class="button-group">
+                                                  <button type="button" class="btn btn-default btn-sm dropdown-toggle"
+                                                      data-toggle="dropdown">Select
+                                                      Supplier Name
+
+                                                      <span class="caret"></span></button>
+                                                  <ul class="dropdown-menu filtermenu" style="position: absolute;
+                                              transform: translate3d(1px, 32px, 0px);
+                                              top: 0px;
+                                              left: 0px;
+                                              will-change: transform;
+                                              height: 12vh;
+                                              overflow-x: hidden;
+                                              overflow-y: auto;">
+                                                      <ng-container *ngFor="let data of SupplierName;">
+                                                          <li>
+                                                              <label class="control control--checkbox">
+                                                                  {{data}}
+                                                                  <input type="checkbox" class="typeSelectBox"
+                                                                      value={{data}}
+                                                                      (change)="SupplierNames($event,'suppliername')">&nbsp;<span
+                                                                      id="select"></span>
+                                                                  <div class="control__indicator filterchkbox"></div>
+                                                              </label>
+                                                          </li>
+                                                      </ng-container>
+                                                  </ul>
+                                              </div>
+
+                                          </div>
+                                      </div>
+                                  </div>
+                              </td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                          </tr>
+                          <ng-container
+                              *ngFor="let data of opsListdata |  paginate: { itemsPerPage: 10, currentPage: p2,id: 'one'}let i = index ">
+
+                              <tr style="cursor: pointer;">
+                                  <td>{{((currentPage - 1) * 10 + i+1)}}</td>
+                                  <td (click)="viewops(data)">{{(data?.month !="") ? data?.month : '-'}}</td>
+                                  <td (click)="viewops(data)">{{(data?.date !="") ? data?.date : '-'}}</td>
+                                  <td (click)="viewops(data)">{{(data?.model !="") ? data?.model : '-'}}</td>
+                                  <td (click)="viewops(data)">{{(data?.loss_qty !="") ? data?.loss_qty : '-'}}</td>
+                                  <td (click)="viewops(data)">{{(data?.loss_time !="") ? data?.loss_time : '-'}}
+                                  </td>
+                                  <td (click)="viewops(data)">
+                                      {{(data?.loss_description !="") ? data?.loss_description : '-'}}</td>
+
+
+                                  <td (click)="viewops(data)">
+                                    <div class="tdspace">
+                                        {{(data?.init_responsibility !=null) ? data?.init_responsibility : '-'}}
+                                      </div></td>
+                                  <td>
+                                      <!-- <img title="Justification" *ngIf="data.justification != null" class="btn-go"
+                                          src="assets/images/info.png" (click)="inialtireason(data)"> -->
+                                  </td>
+                                  <td (click)="viewops(data)">
+                                      {{(data?.ppsmaincluster !="") ? data?.ppsmaincluster : '-'}}</td>
+                                  <td (click)="viewops(data)">
+                                      {{(data?.pps_sub_cluster !="") ? data?.pps_sub_cluster : '-'}}</td>
+                                  <td (click)="viewops(data)">
+                                      {{(data?.opsmaincluster !=null) ? data?.opsmaincluster : '-'}}</td>
+                                  <td (click)="viewops(data)">
+                                      {{(data?.ops_sub_cluster !=null) ? data?.ops_sub_cluster : '-'}}</td>
+
+                                  <td (click)="viewops(data)">
+                                      {{(data?.final_resposibility !=null) ? data?.final_resposibility : '-'}}</td>
+                                  <td><img title="Justification" *ngIf="data.frjustification != null" class="btn-go"
+                                          src="assets/images/info.png" (click)="finalreason(data)"></td>
+                                  <td (click)="viewops(data)">
+                                      {{(data?.additional_remarks !=null) ? data?.additional_remarks : '-'}}</td>
+                                  <td (click)="viewops(data)">{{(data?.vendor_code !=null) ? data?.vendor_code : '-'}}
+                                  </td>
+                                  <td (click)="viewops(data)">
+                                      {{(data?.supplier_name !=null) ? data?.supplier_name : '-'}}
+                                  </td>
+                                  <td (click)="viewops(data)">
+                                      {{(data?.root_cause_analysis !=null) ? data?.root_cause_analysis : '-'}}</td>
+                                  <td (click)="viewops(data)">
+                                      {{(data?.inter_cor_action !=null) ? data?.inter_cor_action : '-'}}</td>
+                                  <td (click)="viewops(data)">
+                                      {{(data?.permanent_cor_action !=null) ? data?.permanent_cor_action : '-'}}</td>
+                                  <!-- <td class="pointer" *ngIf="AuthGuard.session().usertype=='admin'"> <img class="img-fluid text-right " (click)="editvendorlist(data.id)"
+                                                      src="assets/images/edit-img.png"></td> -->
+                                                      <td (click)="viewops(data)">
+                                                          {{(data?.processgap !=null) ? data?.processgap : '-'}}</td>
+                                                      <td><img class="img-fluid text-right cursor" (click)="editbtn(data.id)"
+                                          src="../assets/images/edit-img.png"></td>
+                              </tr>
+                          </ng-container>
+                      </tbody>
+                  </table>
+                  <h4 *ngIf="opsListdata.length==0 && opspendingtrue && selectedvalue == true" style="text-align: center;width: 100%;margin-top: 5%;">
+                    No data Available
+                </h4>
+              </div>
+          </ng-container>
+          <div style="float: right;margin-bottom: 35px;" *ngIf="pmwrListData?.length!=0">
+              <button [disabled]="currentPage == 1" class="btn btn-default paginationbtn" (click)="paginatePartList('prev')"><i
+                  class="fa fa-chevron-left"></i></button>
+              <span style="font-size: 15px;
+                    padding: 10px;">
+                <!-- {{currentPage}} -->
+                <input id="currentPageInput" class="paginatecontrol" type="text" value="{{currentPage}}" style="width: 50px;">
+                <!-- <i class="icon-search" (click)="searchPage()" class="searchbtn"></i> -->
+                <i class="fa fa-search searchbtn" (click)="searchPage()"></i>
+                of
+                {{totalPages}}
+              </span>
+          
+              <button [disabled]="currentPage == totalPages" class="btn btn-default paginationbtn"
+                (click)="paginatePartList('next')"><i class="fa fa-chevron-right"></i></button>
+            </div>
+          <h4 *ngIf="opsListdata.length==0 && opspendingtrue && selectedvalue == false" style="text-align: center;width: 100%;margin-top: 5%;">
+              No data Available
+          </h4>
+      </div>
+      <div class="col-md-12" *ngIf="errortrue">
+          <ng-container>
+              <div class="table-responsive vendortable" *ngIf="ppsListdata.length>0">
+                  <table class="table table-striped home-table">
+                      <thead>
+                          <tr class="tr-head">
+                              <th>S.No</th>
+                              <th>Month</th>
+                              <th>Date</th>
+                              <th>Model</th>
+                              <th>Loss Quantity</th>
+                              <th>Loss Time</th>
+                              <th>Loss Description</th>
+                              <th colspan="2">Initial Responsibility</th>
+                              <th>PPS Main Cluster</th>
+                              <th>PPS Sub Cluster</th>
+                              <th>OPS Main Cluster</th>
+                              <th>OPS Sub Cluster</th>
+                              <th colspan="2">Final Responsibility</th>
+                              <th>Additional Remarks</th>
+                              <th>Supplier Code</th>
+                              <th>Supplier Name</th>
+                              <th>Root Cause Analysis</th>
+                              <th>Intermediate Corrective Action</th>
+                              <th>Permanent Corrective Action</th>
+                              <th>Process Gap</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr>
+                              <td></td>
+                              <td>
+                                  <div class="">
+                                      <div class="row">
+                                          <div class="col-lg-12 nopadding">
+                                              <div class="button-group">
+                                                  <button type="button" class="btn btn-default btn-sm dropdown-toggle"
+                                                      data-toggle="dropdown">Select
+                                                      Month
+
+                                                      <span class="caret"></span></button>
+                                                  <ul class="dropdown-menu filtermenu" style="position: absolute;
+                                          transform: translate3d(1px, 32px, 0px);
+                                          top: 0px;
+                                          left: 0px;
+                                          will-change: transform;
+                                          height: 12vh;
+                                          overflow-x: hidden;
+                                          overflow-y: auto;">
+                                                      <ng-container *ngFor="let data of monthsList;">
+                                                          <li>
+                                                              <label class="control control--checkbox">
+                                                                  {{data}}
+                                                                  <input type="checkbox" class="typeSelectBox"
+                                                                      value={{data}}
+                                                                      (change)="vendor($event,'month')">&nbsp;<span
+                                                                      id="select"></span>
+                                                                  <div class="control__indicator filterchkbox"></div>
+                                                              </label>
+                                                          </li>
+                                                      </ng-container>
+                                                  </ul>
+                                              </div>
+
+                                          </div>
+                                      </div>
+                                  </div>
+                              </td>
+                              <td></td>
+                              <td>
+                                  <div class="">
+                                      <div class="row">
+                                          <div class="col-lg-12 nopadding">
+                                              <div class="button-group">
+                                                  <button type="button" class="btn btn-default btn-sm dropdown-toggle"
+                                                      data-toggle="dropdown">Select
+                                                      Model
+
+                                                      <span class="caret"></span></button>
+                                                  <ul class="dropdown-menu filtermenu" style="position: absolute;
+                                              transform: translate3d(1px, 32px, 0px);
+                                              top: 0px;
+                                              left: 0px;
+                                              will-change: transform;
+                                              height: 12vh;
+                                              overflow-x: hidden;
+                                              overflow-y: auto;">
+                                                      <ng-container *ngFor="let data of ModelList;">
+                                                          <li>
+                                                              <label class="control control--checkbox">
+                                                                  {{data}}
+                                                                  <input type="checkbox" class="typeSelectBox"
+                                                                      value={{data}}
+                                                                      (change)="model($event,'model')">&nbsp;<span
+                                                                      id="select"></span>
+                                                                  <div class="control__indicator filterchkbox"></div>
+                                                              </label>
+                                                          </li>
+                                                      </ng-container>
+                                                  </ul>
+                                              </div>
+
+                                          </div>
+                                      </div>
+                                  </div>
+                              </td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td>
+                                  <div class="">
+                                      <div class="row">
+                                          <div class="col-lg-12 nopadding">
+                                              <div class="button-group">
+                                                  <button type="button" class="btn btn-default btn-sm dropdown-toggle"
+                                                      data-toggle="dropdown">Select
+                                                      PPS Main Cluster	
+
+                                                      <span class="caret"></span></button>
+                                                  <ul class="dropdown-menu filtermenu" style="position: absolute;
+                                              transform: translate3d(1px, 32px, 0px);
+                                              top: 0px;
+                                              left: 0px;
+                                              will-change: transform;
+                                              height: 12vh;
+                                              overflow-x: hidden;
+                                              overflow-y: auto;">
+                                                      <ng-container *ngFor="let data of PPSMainCluster;">
+                                                          <li>
+                                                              <label class="control control--checkbox">
+                                                                  {{data}}
+                                                                  <input type="checkbox" class="typeSelectBox"
+                                                                      value={{data}}
+                                                                      (change)="PPMainCluster($event,'ppsmaincluster')">&nbsp;<span
+                                                                      id="select"></span>
+                                                                  <div class="control__indicator filterchkbox"></div>
+                                                              </label>
+                                                          </li>
+                                                      </ng-container>
+                                                  </ul>
+                                              </div>
+
+                                          </div>
+                                      </div>
+                                  </div>
+                              </td>
+                              <td>
+                                  <div class="">
+                                      <div class="row">
+                                          <div class="col-lg-12 nopadding">
+                                              <div class="button-group">
+                                                  <button type="button" class="btn btn-default btn-sm dropdown-toggle"
+                                                      data-toggle="dropdown">Select
+                                                      PPS Sub Cluster
+
+                                                      <span class="caret"></span></button>
+                                                  <ul class="dropdown-menu filtermenu" style="position: absolute;
+                                              transform: translate3d(1px, 32px, 0px);
+                                              top: 0px;
+                                              left: 0px;
+                                              will-change: transform;
+                                              height: 12vh;
+                                              overflow-x: hidden;
+                                              overflow-y: auto;">
+                                                      <ng-container *ngFor="let data of PPSSubCluster;">
+                                                          <li>
+                                                              <label class="control control--checkbox">
+                                                                  {{data}}
+                                                                  <input type="checkbox" class="typeSelectBox"
+                                                                      value={{data}}
+                                                                      (change)="PPssubCluster($event,'ppssubcluster')">&nbsp;<span
+                                                                      id="select"></span>
+                                                                  <div class="control__indicator filterchkbox"></div>
+                                                              </label>
+                                                          </li>
+                                                      </ng-container>
+                                                  </ul>
+                                              </div>
+
+                                          </div>
+                                      </div>
+                                  </div>
+                              </td>
+                              <td>
+                                  <div class="">
+                                      <div class="row">
+                                          <div class="col-lg-12 nopadding">
+                                              <div class="button-group">
+                                                  <button type="button" class="btn btn-default btn-sm dropdown-toggle"
+                                                      data-toggle="dropdown">Select
+                                                      OPS Main Cluster
+
+                                                      <span class="caret"></span></button>
+                                                  <ul class="dropdown-menu filtermenu" style="position: absolute;
+                                              transform: translate3d(1px, 32px, 0px);
+                                              top: 0px;
+                                              left: 0px;
+                                              will-change: transform;
+                                              height: 12vh;
+                                              overflow-x: hidden;
+                                              overflow-y: auto;">
+                                                      <ng-container *ngFor="let data of OPSMainCluster;">
+                                                          <li>
+                                                              <label class="control control--checkbox">
+                                                                  {{data}}
+                                                                  <input type="checkbox" class="typeSelectBox"
+                                                                      value={{data}}
+                                                                      (change)="OPsmainCluster($event,'opsmaincluster')">&nbsp;<span
+                                                                      id="select"></span>
+                                                                  <div class="control__indicator filterchkbox"></div>
+                                                              </label>
+                                                          </li>
+                                                      </ng-container>
+                                                  </ul>
+                                              </div>
+
+                                          </div>
+                                      </div>
+                                  </div>
+                              </td>
+                              <td>
+                                  <div class="">
+                                      <div class="row">
+                                          <div class="col-lg-12 nopadding">
+                                              <div class="button-group">
+                                                  <button type="button" class="btn btn-default btn-sm dropdown-toggle"
+                                                      data-toggle="dropdown">Select
+                                                      OPS Sub Cluster	
+
+                                                      <span class="caret"></span></button>
+                                                  <ul class="dropdown-menu filtermenu" style="position: absolute;
+                                              transform: translate3d(1px, 32px, 0px);
+                                              top: 0px;
+                                              left: 0px;
+                                              will-change: transform;
+                                              height: 12vh;
+                                              overflow-x: hidden;
+                                              overflow-y: auto;">
+                                                      <ng-container *ngFor="let data of OPSSubCluster;">
+                                                          <li>
+                                                              <label class="control control--checkbox">
+                                                                  {{data}}
+                                                                  <input type="checkbox" class="typeSelectBox"
+                                                                      value={{data}}
+                                                                      (change)="OPssubCluster($event,'opssubcluster')">&nbsp;<span
+                                                                      id="select"></span>
+                                                                  <div class="control__indicator filterchkbox"></div>
+                                                              </label>
+                                                          </li>
+                                                      </ng-container>
+                                                  </ul>
+                                              </div>
+
+                                          </div>
+                                      </div>
+                                  </div>
+                              </td>
+                              <td>
+                                  <div class="">
+                                      <div class="row">
+                                          <div class="col-lg-12 nopadding">
+                                              <div class="button-group">
+                                                  <button type="button" class="btn btn-default btn-sm dropdown-toggle"
+                                                      data-toggle="dropdown">Select
+                                                      Final Responsibility	
+
+                                                      <span class="caret"></span></button>
+                                                  <ul class="dropdown-menu filtermenu" style="position: absolute;
+                                              transform: translate3d(1px, 32px, 0px);
+                                              top: 0px;
+                                              left: 0px;
+                                              will-change: transform;
+                                              height: 12vh;
+                                              overflow-x: hidden;
+                                              overflow-y: auto;">
+                                                      <ng-container *ngFor="let data of FinalResponse;">
+                                                          <li>
+                                                              <label class="control control--checkbox">
+                                                                  {{data}}
+                                                                  <input type="checkbox" class="typeSelectBox"
+                                                                      value={{data}}
+                                                                      (change)="Finalresponse($event,'finalresponse')">&nbsp;<span
+                                                                      id="select"></span>
+                                                                  <div class="control__indicator filterchkbox"></div>
+                                                              </label>
+                                                          </li>
+                                                      </ng-container>
+                                                  </ul>
+                                              </div>
+
+                                          </div>
+                                      </div>
+                                  </div>
+                              </td>
+                              <td></td>
+                              <td></td>
+                              <td>
+                                  <div class="">
+                                      <div class="row">
+                                          <div class="col-lg-12 nopadding">
+                                              <div class="button-group">
+                                                  <button type="button" class="btn btn-default btn-sm dropdown-toggle"
+                                                      data-toggle="dropdown">Select
+                                                      Supplier Code
+
+                                                      <span class="caret"></span></button>
+                                                  <ul class="dropdown-menu filtermenu" style="position: absolute;
+                                              transform: translate3d(1px, 32px, 0px);
+                                              top: 0px;
+                                              left: 0px;
+                                              will-change: transform;
+                                              height: 12vh;
+                                              overflow-x: hidden;
+                                              overflow-y: auto;">
+                                                      <ng-container *ngFor="let data of SupplierCode;">
+                                                          <li>
+                                                              <label class="control control--checkbox">
+                                                                  {{data}}
+                                                                  <input type="checkbox" class="typeSelectBox"
+                                                                      value={{data}}
+                                                                      (change)="SupplierCodes($event,'suppliercode')">&nbsp;<span
+                                                                      id="select"></span>
+                                                                  <div class="control__indicator filterchkbox"></div>
+                                                              </label>
+                                                          </li>
+                                                      </ng-container>
+                                                  </ul>
+                                              </div>
+
+                                          </div>
+                                      </div>
+                                  </div>
+                              </td>
+                              <td>
+                                  <div class="">
+                                      <div class="row">
+                                          <div class="col-lg-12 nopadding">
+                                              <div class="button-group">
+                                                  <button type="button" class="btn btn-default btn-sm dropdown-toggle"
+                                                      data-toggle="dropdown">Select
+                                                      Supplier Name
+
+                                                      <span class="caret"></span></button>
+                                                  <ul class="dropdown-menu filtermenu" style="position: absolute;
+                                              transform: translate3d(1px, 32px, 0px);
+                                              top: 0px;
+                                              left: 0px;
+                                              will-change: transform;
+                                              height: 12vh;
+                                              overflow-x: hidden;
+                                              overflow-y: auto;">
+                                                      <ng-container *ngFor="let data of SupplierName;">
+                                                          <li>
+                                                              <label class="control control--checkbox">
+                                                                  {{data}}
+                                                                  <input type="checkbox" class="typeSelectBox"
+                                                                      value={{data}}
+                                                                      (change)="SupplierNames($event,'suppliername')">&nbsp;<span
+                                                                      id="select"></span>
+                                                                  <div class="control__indicator filterchkbox"></div>
+                                                              </label>
+                                                          </li>
+                                                      </ng-container>
+                                                  </ul>
+                                              </div>
+
+                                          </div>
+                                      </div>
+                                  </div>
+                              </td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                          </tr>
+                          <ng-container
+                              *ngFor="let data of ppsListdata |  paginate: { itemsPerPage: 10, currentPage: p2,id: 'one'}let i = index ">
+
+                              <tr style="cursor: pointer;">
+                                  <td>{{((currentPage - 1) * 10 + i+1)}}</td>
+                                  <td (click)="viewops(data)">{{(data?.month !=null) ? data?.month : '-'}}</td>
+                                  <td (click)="viewops(data)">{{(data?.date !=null) ? data?.date : '-'}}</td>
+                                  <td (click)="viewops(data)">{{(data?.model !=null) ? data?.model : '-'}}</td>
+                                  <td (click)="viewops(data)">{{(data?.loss_qty !=null) ? data?.loss_qty : '-'}}</td>
+                                  <td (click)="viewops(data)">{{(data?.loss_time !=null) ? data?.loss_time : '-'}}
+                                  </td>
+                                  <td (click)="viewops(data)">
+                                      {{(data?.loss_description !=null) ? data?.loss_description : '-'}}</td>
+
+
+                                  <td (click)="viewops(data)">
+                                    <div class="tdspace">
+                                        {{(data?.init_responsibility !=null) ? data?.init_responsibility : '-'}}
+                                      </div></td>
+                                  <td>
+                                      <!-- <img title="Justification" *ngIf="data.justification != null" class="btn-go"
+                                          src="assets/images/info.png" (click)="inialtireason(data)"> -->
+                                  </td>
+                                  <td (click)="viewops(data)">
+                                      {{(data?.ppsmaincluster !=null) ? data?.ppsmaincluster : '-'}}</td>
+                                  <td (click)="viewops(data)">
+                                      {{(data?.pps_sub_cluster !=null) ? data?.pps_sub_cluster : '-'}}</td>
+                                  <td (click)="viewops(data)">
+                                      {{(data?.opsmaincluster !=null) ? data?.opsmaincluster : '-'}}</td>
+                                  <td (click)="viewops(data)">
+                                      {{(data?.ops_sub_cluster !=null) ? data?.ops_sub_cluster : '-'}}</td>
+
+                                  <td (click)="viewops(data)">
+                                      {{(data?.final_resposibility !=null) ? data?.final_resposibility : '-'}}</td>
+                                  <td><img title="Justification" *ngIf="data.frjustification != null" class="btn-go"
+                                          style="text-align: right;" src="assets/images/info.png"
+                                          (click)="finalreason(data)"></td>
+                                  <td (click)="viewops(data)">
+                                      {{(data?.additional_remarks !=null) ? data?.additional_remarks : '-'}}</td>
+                                  <td (click)="viewops(data)">{{(data?.vendor_code !=null) ? data?.vendor_code : '-'}}
+                                  </td>
+                                  <td (click)="viewops(data)">
+                                      {{(data?.supplier_name !=null) ? data?.supplier_name : '-'}}</td>
+                                  <td (click)="viewops(data)">
+                                      {{(data?.root_cause_analysis !=null) ? data?.root_cause_analysis : '-'}}</td>
+                                  <td (click)="viewops(data)">
+                                      {{(data?.inter_cor_action !=null) ? data?.inter_cor_action : '-'}}</td>
+                                  <td (click)="viewops(data)">
+                                      {{(data?.permanent_cor_action !=null) ? data?.permanent_cor_action : '-'}}</td>
+                                  <td (click)="viewops(data)">
+                                      {{(data?.processgap !=null) ? data?.processgap : '-'}}</td>
+                              </tr>
+                          </ng-container>
+                      </tbody>
+                  </table>
+
+              </div>
+          </ng-container>
+          <div style="float: right;margin-bottom: 35px;" *ngIf="pmwrListData?.length!=0">
+              <button [disabled]="currentPage == 1" class="btn btn-default paginationbtn" (click)="paginatePartList('prev')"><i
+                  class="fa fa-chevron-left"></i></button>
+              <span style="font-size: 15px;
+                    padding: 10px;">
+                <!-- {{currentPage}} -->
+                <input id="currentPageInput" class="paginatecontrol" type="text" value="{{currentPage}}" style="width: 50px;">
+                <!-- <i class="icon-search" (click)="searchPage()" class="searchbtn"></i> -->
+                <i class="fa fa-search searchbtn" (click)="searchPage()"></i>
+                of
+                {{totalPages}}
+              </span>
+          
+              <button [disabled]="currentPage == totalPages" class="btn btn-default paginationbtn"
+                (click)="paginatePartList('next')"><i class="fa fa-chevron-right"></i></button>
+            </div>
+          <h4 *ngIf="ppsListdata.length==0 && errortrue" style="text-align: center;width: 100%;margin-top: 5%;">
+              No data Available
+          </h4>
+      </div>
+  </div>
+</div>
+
+<div class="modal fade" id="opsmodal" role="dialog" data-backdrop="static" data-keyboard="false">
+  <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+          <div class="modal-header" style="background:#454545;
+              color:#fff; ">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Line Details</h4>
+          </div>
+          <div class="modal-body">
+              <div class="row">
+                  <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 table-responsive">
+                      <table class="table table-bordered">
+                          <tbody>
+                              <tr>
+                                  <th>Month</th>
+                                  <td>{{(opsview?.month !=null) ? opsview?.month : '-'}}</td>
+                                  <th>OPS Main Cluster</th>
+                                  <td>{{(opsview?.opsmaincluster !=null) ? opsview?.opsmaincluster : '-'}}</td>
+                              </tr>
+                              <tr>
+                                  <th>Date</th>
+                                  <td>{{(opsview?.date !=null) ? opsview?.date : '-'}}</td>
+                                  <th>OPS Sub Cluster</th>
+                                  <td>{{(opsview?.ops_sub_cluster !=null) ? opsview?.ops_sub_cluster : '-'}}</td>
+                              </tr>
+                              <tr>
+                                  <th>Model</th>
+                                  <td>{{(opsview?.model !=null) ? opsview?.model : '-'}}</td>
+                                  <th>Loss Time</th>
+                                  <td>{{(opsview?.loss_time !=null) ? opsview?.loss_time : '-'}}</td>
+                              </tr>
+                              <tr>
+                                  <th>Loss Quantity</th>
+                                  <td>{{(opsview?.loss_qty !=null) ? opsview?.loss_qty : '-'}}</td>
+                                  <th>Final Responsibility</th>
+                                  <td>{{(opsview?.final_resposibility !=null) ? opsview?.final_resposibility : '-'}}
+                                      <img class="edit-mdola" *ngIf="finalfrom != null"
+                                          src="assets/images/edit-modal.png" (click)="finalres()">
+                                  </td>
+                              </tr>
+
+                              <tr>
+                                  <th>Initial Responsibility</th>
+                                  <td> <div class="modaltd">
+                                    {{(opsview?.init_responsibility !=null) ? opsview?.init_responsibility : '-'}}
+                                  </div>
+                                      <!-- <img class="edit-mdola" src="assets/images/edit-modal.png"
+                                              (click)="initalres()"> -->
+                                  </td>
+                                  <th>Supplier code</th>
+                                  <td>{{(opsview?.vendor_code !=null) ? opsview?.vendor_code : '-'}}</td>
+                              </tr>
+                              <tr>
+                                  <th>PPS Main Cluster</th>
+                                  <td>{{(opsview?.ppsmaincluster !=null) ? opsview?.ppsmaincluster : '-'}}</td>
+                                  <th>Supplier name</th>
+                                  <td>{{(opsview?.supplier_name !=null) ? opsview?.supplier_name : '-'}}</td>
+                              </tr>
+                              <tr>
+                                  <th>PPS Sub Cluster </th>
+                                  <td>{{(opsview?.pps_sub_cluster !=null) ? opsview?.pps_sub_cluster : '-'}}</td>
+                                  <th>Process Gap</th>
+                                  <td>{{(opsview?.processgap !=null) ? opsview?.pps_sub_cluster : '-'}}</td>
+                              </tr>
+                              <tr>
+                                  <th>Additional remarks</th>
+                                  <td colspan="3">
+                                      {{(opsview?.additional_remarks !=null) ? opsview?.additional_remarks : '-'}}
+                                  </td>
+                              </tr>
+                              <tr>
+                                  <th>Loss Description</th>
+                                  <td colspan="3">
+                                      {{(opsview?.loss_description !=null) ? opsview?.loss_description : '-'}}
+                                  </td>
+
+                              </tr>
+                              <tr>
+                                  <th>Root Cause Analysis</th>
+                                  <td colspan="3">
+                                      {{(opsview?.root_cause_analysis !=null) ? opsview?.root_cause_analysis : '-'}}
+                                  </td>
+                              </tr>
+                              <tr>
+                                  <th>Intermediate Corrective Action</th>
+                                  <td colspan="3">
+                                      {{(opsview?.inter_cor_action !=null) ? opsview?.inter_cor_action : '-'}}
+                                  </td>
+                              </tr>
+                              <tr>
+                                  <th>Permanent Corrective Action</th>
+                                  <td colspan="3">
+                                      {{(opsview?.permanent_cor_action !=null) ? opsview?.permanent_cor_action : '-'}}
+                                  </td>
+                              </tr>
+                          </tbody>
+                      </table>
+                  </div>
+              </div>
+          </div>
+          <!-- <div class="modal-footer"> </div> -->
+          <div class="row">
+              <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center pb-4"
+                  style="margin-bottom:15px;"><button class="btn btn-primary new-ticket btn-sm ml-5"
+                      data-dismiss="modal" type="button">Close</button></div>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+
+<div class="modal fade" id="fileupload">
+  <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+          <div class="modal-body">
+              <div class="row">
+                  <div class="col-md-12 text-center">
+                      <p class="all-ticket mt-2" style="margin:0;padding: 0;">Upload File</p>
+                      <label for="uploadFile" class="btn btn-sm upload-btn cursor mt-3">
+                          <img style="width: 19px;" src="assets/images/upload-file.png">&nbsp;&nbsp; Choose
+                          File</label>
+                      <br> {{filename}}
+                      <br>
+                      <input type="file" id="uploadFile" #uploadFile style="display: none"
+                          (change)="uploadfile($event)"
+                          accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel">
+
+                      <!-- <span style="cursor: pointer;" (click)="downloadFile('OPS-Pending List.xlsx')">Download Pending
+                          List
+                          <img src="assets/images/download-img.png" style="cursor: pointer">
+                      </span> -->
+                  </div>
+              </div>
+          </div>
+
+          <!-- Modal footer -->
+          <div class="modal-footer">
+              <button type="button" id="btn-color" class="btn btn-sm btn-primary new-ticket"
+                  data-dismiss="modal">Close</button>
+              <button type="button" id="btn-color" class="btn btn-sm btn-primary new-ticket"
+                  (click)="ConfirmUploadFile()">Submit</button>
+
+          </div>
+
+      </div>
+  </div>
+</div>
+
+
+<!-- Initial Responsibility Change modal -->
+
+<!-- <div class="modal fade" id="initial" role="dialog" data-backdrop="static" data-keyboard="false">
+  <div class="modal-dialog modal-md">
+      <div class="modal-content">
+          <div class="modal-body">
+              <div class="row">
+                  <div class="col-md-10">
+                      <h2 class="modalHeader">Initial Responsibility</h2>
+                  </div>
+                  <div class="col-md-2">
+                      <button type="button" class="close" data-dismiss="modal" (click)="closemodal()">&times;</button>
+                  </div>
+                  <br>
+                  <form [formGroup]="InitialResponsibilityForm">
+                      <div class="col-md-12">
+                          <div class="col-md-3">
+                              <div class="col-md-12 nopadding">
+                                  <p class="head">Change From</p>
+                              </div>
+                              <div class="col-md-12 nopadding">
+                                  <p class="head">Change To <span class="color">*</span></p>
+                              </div>
+                          </div>
+                          <div class="col-md-9 nopadding">
+                              <div class="col-md-12 nopadding">
+                                  <div class="form-group  text-field">
+                                      <input value={{initialfrom}} type="text" class="form-control" value=""
+                                          placeholder="" readonly>
+                                  </div>
+                              </div>
+                              <div class="col-md-12 nopadding">
+                                  <div class="form-group  text-field">
+                                      <ng-multiselect-dropdown [placeholder]="'Select Initial Responsibility'"
+                                          [data]="dropdownList" [(ngModel)]="selectedItems"
+                                          formControlName="init_responsibility1" [settings]="dropdownSettings"
+                                          (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)">
+                                      </ng-multiselect-dropdown>
+                                      <small class="text-danger" *ngIf="
+                                                          !InitialResponsibilityForm.controls.init_responsibility1.valid &&
+                                                          InitialResponsibilityForm.controls.init_responsibility1.touched
+                                                        "> Initial Responsibility is required</small>
+                                  </div>
+                              </div>
+                          </div> -->
+                          <!-- <div class="col-md-12" style="padding-right: 0px;">
+                              <div class="form-group  text-field" style="display: block;">
+                                  Reason<span class="color">*</span>
+                                  <textarea type="text" class="form-control" value="" formControlName="justification"
+                                      placeholder=""></textarea>
+                                  <small class="text-danger errormsg" *ngIf="
+                                                                                    !InitialResponsibilityForm.controls.justification.valid &&
+                                                                                    InitialResponsibilityForm.controls.justification.touched
+                                                                                  ">Reason is required</small>
+                              </div>
+                          </div> -->
+                      <!-- </div>
+                  </form>
+              </div>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-sm btn-primary new-ticket"
+              (click)="confirminitalres()">Yes</button>
+              <button type="button" class="btn btn-sm btn-primary new-ticket" data-dismiss="modal"
+                  (click)="closemodal()">No </button>
+             
+          </div>
+      </div>
+  </div>
+</div> -->
+
+<!-- Final Responsibility Change modal -->
+
+<div class="modal fade" id="final" role="dialog" data-backdrop="static" data-keyboard="false">
+  <div class="modal-dialog modal-md">
+      <div class="modal-content">
+          <div class="modal-body">
+              <div class="row">
+                  <div class="col-md-10">
+                      <h2 class="modalHeader">Final Responsibility</h2>
+                  </div>
+                  <div class="col-md-2">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  </div>
+                  <form [formGroup]="FinalResponsibilityForm">
+                      <div class="col-md-12">
+                          <div class="col-md-3">
+                              <div class="col-md-12 nopadding">
+                                  <p class="head">Change From</p>
+                              </div>
+                              <div class="col-md-12 nopadding">
+                                  <p class="head">Change To <span class="color">*</span></p>
+                              </div>
+                          </div>
+                          <div class="col-md-9 nopadding">
+                              <div class="col-md-12 nopadding">
+                                  <div class="form-group  text-field">
+                                      <input value={{finalfrom}} type="text" class="form-control" readonly>
+                                  </div>
+                              </div>
+                              <div class="col-md-12 nopadding">
+                                <div class="form-group  text-field">
+                                    <ng-container *ngIf="!final">
+                                        <ng-multiselect-dropdown id="multipleSelect" [placeholder]="'Select Final Responsibility'" [data]="Finalresdata"
+                                        [(ngModel)]="selectedItems" formControlName="final_resposibility1"
+                                        [settings]="dropdownSettings" (onSelect)="onItemSelect($event)"
+                                        (onSelectAll)="onSelectAll($event)">
+                                    </ng-multiselect-dropdown>
+                                    </ng-container>
+                                    <ng-container *ngIf="final">
+                                        <ng-multiselect-dropdown id="multipleSelect" [placeholder]="'Select Final Responsibility'" [data]="Finalresdata"
+                                        [(ngModel)]="selectedItems" formControlName="final_resposibility1"
+                                        [settings]="dropdownSettings" (onSelect)="onItemSelect($event)"
+                                        (onSelectAll)="onSelectAll($event)" [disabled]="'false'">
+                                    </ng-multiselect-dropdown>
+                                    </ng-container >
+                                    <small class="text-danger" *ngIf="
+                                                        !FinalResponsibilityForm.controls.final_resposibility.valid &&
+                                                        FinalResponsibilityForm.controls.final_resposibility.touched
+                                                      "> Final Responsibility is required</small>
+                                </div>
+                              </div>
+                          </div>
+                          <div class="col-md-12" style="padding-right: 0px;">
+                              <div class="form-group  text-field">
+                                  Reason<span class="color">*</span>
+                                  <textarea type="text" class="form-control" value=""
+                                      formControlName="frjustification" placeholder="" *ngIf="!final"></textarea>
+                                      <textarea type="text" class="form-control" value=""
+                                      formControlName="frjustification" placeholder="" *ngIf="final" readonly></textarea>
+                                  <small class="text-danger errormsg" *ngIf="
+                                                                                        !FinalResponsibilityForm.controls.frjustification.valid &&
+                                                                                        FinalResponsibilityForm.controls.frjustification.touched
+                                                                                      ">Reason is required</small>
+                              </div>
+                          </div>
+                      </div>
+                  </form>
+              </div>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-sm btn-primary new-ticket" (click)="confirmfinalres()">Yes</button>
+              <button type="button" class="btn btn-sm btn-primary new-ticket" data-dismiss="modal"
+                  (click)="closemodal()">No </button>
+            
+          </div>
+      </div>
+  </div>
+</div>
+
+
+<!-- Reason Modal -->
+
+
+<div class="modal fade" id="reason" role="dialog" data-backdrop="static" data-keyboard="false">
+  <div class="modal-dialog modal-md">
+      <div class="modal-content">
+          <div class="modal-body">
+              <div class="row">
+                  <div class="col-md-10">
+                      <p class="modalHeader">{{reasonvvalue}}</p>
+                  </div>
+                  <div class="col-md-2">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  </div>
+                  <br>
+                  <div class="col-md-12">
+                      <ng-container *ngIf="final">
+                          <div class="form-group  text-field">
+                              Final Responsibility
+                              <ng-multiselect-dropdown id="multipleSelect" [placeholder]="'Select Final Responsibility'" [data]="Finalresdata"
+                              [(ngModel)]="selectedItems" formControlName="final_resposibility1"
+                              [settings]="dropdownSettings" (onSelect)="onItemSelect($event)"
+                              (onSelectAll)="onSelectAll($event)">
+                          </ng-multiselect-dropdown>
+                          </div>
+                          <div class="form-group  text-field">
+                              Reason
+                              <textarea value={{finalreasonvalue}} type="text" class="form-control"
+                                  readonly></textarea>
+                          </div>
+                      </ng-container>
+                  </div>
+              </div>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-sm btn-primary new-ticket" data-dismiss="modal">Close</button>
+          </div>
+      </div>
+  </div>
+</div>

@@ -1,0 +1,39 @@
+<app-spinner *ngIf="isLoading"></app-spinner>
+<div class="container-fluid" style="padding: 0px;background: #fff;">
+  <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9" id="bg-img">
+          <h2 class="head">LINE LOSS TRACKER</h2>
+  </div>
+  <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+      <div class="row">
+          <div class="col-md-12">
+              <div class="login-bg">
+                      <img class="daimler-img" src="assets/images/daimler-img.png">
+                      <form [formGroup]="form" style="margin: 21px 0px 0px 0px;">
+                              <div class="col-md-12" style="margin-bottom:4%;position: relative;padding: 0px;">
+                                  <label class="sub-title">Short ID</label>
+                                  <input type="text" class="form-control" placeholder="Enter Your Short ID" formControlName="shortid">
+                                  <img id="user" src="assets/images/user.png">
+                                  <small class="text-danger" *ngIf="
+                                          !form.controls.shortid.valid &&
+                                          form.controls.shortid.touched
+                                        "> Short ID is required</small>
+                              </div>
+                  
+                              <div class="col-md-12" style="margin-bottom:7%;position: relative;padding: 0px;">
+                                      <label class="sub-title">Password</label>
+                                  <input type="password" class="form-control" placeholder="Enter Your Password" formControlName="password"
+                                      (keydown)="enterkey($event.keyCode)" style="padding: 0px 0px 0px 36px">
+                                      <img id="pwd" src="assets/images/pwd.png">
+                                      <small class="text-danger" *ngIf="
+                                      !form.controls.password.valid &&
+                                      form.controls.password.touched
+                                    ">Password is required</small>
+                                      <input class="login-btn" type="submit" value="Log In" (click)="onSubmit()">
+                                  </div>
+                              <div class="col-md-4"></div>
+                          </form>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>

@@ -1,0 +1,167 @@
+/* You can add global styles to this file, and also import other style files */
+
+tr.tr-head {
+  background: #F0F0F0 !important;
+  border: 1px solid #979797;
+  white-space: nowrap;
+  cursor: auto !important;
+}
+.nopadding{
+  padding: 0px !important;
+}
+
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+-webkit-appearance: none;
+}
+li.current {
+background: #003b60 !important;
+}
+h4.header {
+padding: 20px 0px 13px 0px;
+font-family: corpoS-bold;
+  font-size: 18px;
+}
+span.dropdown-btn {
+background: #fff;
+border: 1px solid #cccccc !important;
+}
+.new-ticket{
+font-family: corpoS-bold;
+}
+img#downlaod:hover {
+box-shadow: 0 0 7px 0 #003b60;
+}
+ul.ngx-pagination {
+margin: 10px 0px 80px 0px;
+}
+.table-responsive.vendortable {
+height: 56vh;
+}
+@font-face {
+font-family: corpoS-bold;
+src: url(/assets/fonts/corpoS-bold.ttf);
+}
+@font-face {
+  font-family: corpoS-italic;
+  src: url(/assets/fonts/corpoS-italic.ttf);
+}
+@font-face {
+  font-family: corpoS-normal;
+  src: url(/assets/fonts/corpoS-normal.ttf);
+}
+.dropdown-btn{
+  padding: 4px 12px !important;
+}
+path.highcharts-grid-line {
+  display: none;
+}
+g.highcharts-axis-labels.highcharts-yaxis-labels {
+display: none;
+}
+text.highcharts-credits {
+display: none;
+}
+tspan {
+font-size: 10px;
+font-family: corpoS-normal;
+}
+text.highcharts-title tspan {
+font-size: 19px !important;
+}
+g.highcharts-legend-item.highcharts-column-series.highcharts-color-undefined.highcharts-series-0,g.highcharts-legend-item.highcharts-column-series.highcharts-color-undefined.highcharts-series-1 {
+display: none;
+}
+text.highcharts-title tspan {
+font-size: 19px !important;
+display: none;
+}
+span.chartfcount {
+background: #999a9e;
+padding: 0px 7px;
+margin: 0px 4px 0px 4px;
+border-radius: 4px;
+}
+span.chartscount {
+background: #005176;
+padding: 0px 7px;
+margin: 0px 4px 0px 4px;
+border-radius: 4px;
+}
+section.inner-chart-bg {
+padding: 9px 24px 0px 24px;
+}
+.headl{
+position: absolute;
+top: 12px;
+left: 36px;
+font-family: corpoS-normal;
+font-size: 17px;
+color:#4C6072;
+}
+.headr{
+position: absolute;
+top: 12px;
+right: 47px;
+font-family: corpoS-normal;
+font-size: 17px;
+color: #4C6072;
+}
+.countlist {
+font-family: corpoS-normal;
+font-size: 15px;
+color: #AEAEAE;
+position: absolute;
+top: 44px;
+right: 44px;
+}
+.hdt{
+background: #999a9e;
+  padding: 0px 8px;
+  border-radius: 5px;
+  margin: 0px 5px;
+}
+.mdt{
+background: #005176;
+  padding: 0px 8px;
+  border-radius: 5px;
+  margin: 0px 5px;
+}
+
+#multipleSelect > .dropdown-list{
+position: fixed !important;
+width: 25% !important;
+}
+.paginatecontrol{
+height: 34px;
+padding: 6px 12px;
+font-size: 14px;
+line-height: 1.42857143;
+color: #555;
+background-color: #fff;
+background-image: none;
+border: 1px solid #ccc;
+border-top-left-radius: 5px;
+border-bottom-left-radius: 5px;
+box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+.searchbtn{
+padding: 8px 8px;
+position: relative;
+height: 34px;
+cursor: pointer;
+border: 1px solid #ccc;
+border-top-right-radius: 5px;
+border-bottom-right-radius: 5px;
+background: #ddd;
+}
+div.tdspace{
+  width: 322px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+div.modaltd{
+  white-space:normal;
+}

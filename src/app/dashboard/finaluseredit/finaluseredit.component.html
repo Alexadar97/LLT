@@ -1,0 +1,336 @@
+<app-spinner *ngIf="isLoading"></app-spinner>
+<div class="container-fluid">
+    <div class="row" id="margin-bottom" style="margin-top:30px">
+        <div class="col-md-3">
+            <h4>Final Responsibility</h4>
+        </div>
+        <div class="col-md-7">
+        </div>
+        <div class="col-md-2" style="text-align:right">
+            <button class="btn btn-primary new-ticket" routerLink="../final">Back</button>
+        </div>
+    </div>
+    <form [formGroup]="BasicForm">
+        <div class="row" id="margin-bottom">
+            <div class="col-md-4">
+                <div class="form-group  text-field">
+                    Month
+                    <select class="form-control" id="model" formControlName="month" style="font-weight: 400 !important;"
+                        disabled>
+                        <option disabled>Select Month</option>
+
+                        <option value="Jan">Jan</option>
+                        <option value="Feb">Feb</option>
+                        <option value="Mar">Mar</option>
+                        <option value="Apr">Apr</option>
+                        <option value="May">May</option>
+                        <option value="Jun">Jun</option>
+                        <option value="Jul">Jul</option>
+                        <option value="Aug">Aug</option>
+                        <option value="Sep">Sep</option>
+                        <option value="Oct">Oct</option>
+                        <option value="Nov">Nov</option>
+                        <option value="Dec">Dec</option>
+
+                    </select>
+                    <small class="text-danger errormsg" *ngIf="
+                      !BasicForm.controls.month.valid &&
+                      BasicForm.controls.month.touched
+                    ">Month is required</small>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group  text-field">
+                    Date
+                    <input type="text" class="form-control" formControlName="date" name="bday" disabled>
+
+                    <small class="text-danger errormsg" *ngIf="
+                        !BasicForm.controls.date.valid &&
+                        BasicForm.controls.date.touched
+                      ">Date is required</small>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group  text-field">
+                    Model
+                    <select class="form-control" id="model" formControlName="model" style="font-weight: 400 !important;"
+                        disabled>
+                        <option disabled>Select Model</option>
+
+                        <option>HDT</option>
+                        <option>MDT</option>
+                    </select>
+
+                    <small class="text-danger" *ngIf="
+              !BasicForm.controls.model.valid &&
+              BasicForm.controls.model.touched
+            "> Model is required</small>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="row" id="margin-bottom">
+
+            <div class="col-md-4">
+                <div class="form-group  text-field">
+                    Loss Quantity
+                    <input type="number" class="form-control" formControlName="loss_qty" placeholder="" disabled>
+                    <small class="text-danger errormsg" *ngIf="
+                                !BasicForm.controls.loss_qty.valid &&
+                                BasicForm.controls.loss_qty.touched
+                              ">Loss Quantity is required</small>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group  text-field">
+                    Loss Time
+                    <input type="number" class="form-control" formControlName="loss_time" placeholder="" disabled>
+                    <small class="text-danger errormsg" *ngIf="
+                                    !BasicForm.controls.loss_time.valid &&
+                                    BasicForm.controls.loss_time.touched
+                                  ">Loss Time is required</small>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group  text-field">
+                    Loss Description
+                    <input type="text" class="form-control" formControlName="loss_description" placeholder="" disabled>
+                    <small class="text-danger errormsg" *ngIf="
+                                    !BasicForm.controls.loss_description.valid &&
+                                    BasicForm.controls.loss_description.touched
+                                  ">Loss Description is required</small>
+                </div>
+            </div>
+        </div>
+        <div class="row" id="margin-bottom">
+            <div class="col-md-4">
+                <div class="form-group  text-field">
+                    Initial Responsibility
+                    <ng-multiselect-dropdown [placeholder]="'Select Initial Responsibility'"
+                    [data]="dropdownList1" [(ngModel)]="selectedItems1"
+                    formControlName="init_responsibility1" [settings]="dropdownSettings1"
+                    (onSelect)="onItemSelect1($event)" (onSelectAll)="onSelectAll1($event)" [disabled]="'false'">
+                </ng-multiselect-dropdown>
+
+                    <small class="text-danger" *ngIf="
+                  !BasicForm.controls.init_responsibility.valid &&
+                  BasicForm.controls.init_responsibility.touched
+                "> Initial Responsibility is required</small>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group  text-field">
+                    PPS Main Cluster
+                    <select class="form-control" formControlName="pps_main_cluster_id" disabled>
+                        <option value="null" selected disabled>Select OPS Sub Cluster</option>
+                        <ng-container *ngFor="let data of getListdata; let i=index">
+                            <option value={{data.id}}>{{data.clustername}}</option>
+                        </ng-container>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group  text-field">
+                    PPS Sub Cluster
+                    <input class="form-control" id="model" formControlName="pps_sub_cluster"
+                        style="font-weight: 400 !important;" disabled>
+
+                </div>
+            </div>
+        </div>
+        <div class="row" id="margin-bottom">
+            <div class="col-md-4">
+                <div class="form-group  text-field">
+                    Final Responsibility
+
+                    <!-- <input class="form-control" id="model" formControlName="final_resposibility" disabled> -->
+                    <ng-multiselect-dropdown id="multipleSelect" [placeholder]="'Select Final Responsibility'" [data]="Finalresdata"
+                    [(ngModel)]="selectedItems" formControlName="final_resposibility1"
+                    [settings]="dropdownSettings" (onSelect)="onItemSelect($event)"
+                    (onSelectAll)="onSelectAll($event)" [disabled]="'false'">
+                </ng-multiselect-dropdown>
+
+
+                </div>
+
+            </div>
+            <div class="col-md-4">
+                <div class="form-group  text-field">
+                    OPS Main Cluster
+                    <select class="form-control" formControlName="ops_main_cluster_id" disabled>
+                        <option value="null" selected disabled>Select OPS Sub Cluster</option>
+                        <ng-container *ngFor="let data of getListdata; let i=index">
+                            <option value={{data.id}}>{{data.clustername}}</option>
+                        </ng-container>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group  text-field">
+
+                    OPS Sub Cluster
+
+                    <input type="text" class="form-control" id="model" formControlName="ops_sub_cluster"
+                        style="font-weight: 400 !important;" disabled>
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group  text-field">
+                    Supplier Code
+                    <input type="text" class="form-control" formControlName="vendor_code" placeholder="" disabled>
+                    <small class="text-danger errormsg" *ngIf="
+                                            !BasicForm.controls.vendor_code.valid &&
+                                            BasicForm.controls.vendor_code.touched
+                                          ">Supplier Code is required</small>
+                </div>
+            </div>
+            <div class="col-md-4">
+                Supplier Name
+                <input type="text" class="form-control" formControlName="supplier_name" placeholder="" disabled>
+                <small class="text-danger errormsg" *ngIf="
+                                    !BasicForm.controls.supplier_name.valid &&
+                                    BasicForm.controls.supplier_name.touched
+                                  ">Supplier Name is required</small>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group  text-field">
+                    Remarks
+
+                    <input type="text" class="form-control" id="model" formControlName="additional_remarks"
+                        style="font-weight: 400 !important;" disabled>
+                    <small class="text-danger" *ngIf="
+                          !BasicForm.controls.additional_remarks.valid &&
+                          BasicForm.controls.additional_remarks.touched
+                        "> Remarks is required</small>
+                </div>
+            </div>
+
+
+        </div>
+    </form>
+    <div class="row">
+        <div class="col-md-4" [formGroup]="BasicForm">
+            <div class="form-group  text-field">
+                Justification<span class="color">*</span>
+                <input type="text" class="form-control" id="model" formControlName="frjustification"
+                    style="font-weight: 400 !important;" placeholder="Justification" readonly>
+                <small class="text-danger errormsg" *ngIf="
+                    !BasicForm.controls.frjustification.valid &&
+                    BasicForm.controls.frjustification.touched
+                  ">Justification is required</small>
+            </div>
+        </div>
+        <form [formGroup]="FinalForm">
+            <div class="col-md-4">
+                Root Cause Analysis<span class="color">*</span>
+                <textarea id="root" type="text" class="form-control" value="" formControlName="root_cause_analysis"
+                    placeholder="Root Cause Analysis"></textarea>
+                <small class="text-danger errormsg" *ngIf="
+                  !FinalForm.controls.root_cause_analysis.valid &&
+                  FinalForm.controls.root_cause_analysis.touched
+                "> Root Cause Analysis is required</small>
+                <p style="margin: 12px 0px 0px 0px;" class="timestamp" *ngIf="rcatimestamp != null"><b>Date & Time</b> :
+                    {{rcatimestamp}}</p>
+                <p class="timestamp" *ngIf="rcashortid != null"><b>Short ID</b> <b>:</b> {{rcashortid}}</p>
+            </div>
+            <div class="col-md-4">
+                Intermediate Corrective Action<span class="color">*</span>
+                <textarea id="inter" type="text" class="form-control" value="" formControlName="inter_cor_action"
+                    placeholder="Intermediate Corrective Action"></textarea>
+                <small class="text-danger errormsg" *ngIf="
+                  !FinalForm.controls.inter_cor_action.valid &&
+                  FinalForm.controls.inter_cor_action.touched
+                ">Intermediate Corrective Action is required</small>
+                <p style="margin: 12px 0px 0px 0px;" class="timestamp" *ngIf="icatimestamp != null"><b>Date & Time</b> :
+                    {{icatimestamp}}</p>
+                <p class="timestamp" *ngIf="icashortid != null"><b>Short ID</b> <b>:</b> {{icashortid}}</p>
+            </div>
+        </form>
+    </div>
+    <form [formGroup]="FinalForm">
+        <div class="row" style="margin: 7px 0px 0px 0px;">
+            <div class="col-md-4" style="padding-left: 0px;">
+                Permanent Corrective Action<span class="color">*</span>
+                <textarea id="permanent" type="text" class="form-control" value=""
+                    formControlName="permanent_cor_action" placeholder="Permanent Corrective Action"></textarea>
+                <small class="text-danger errormsg" *ngIf="
+                !FinalForm.controls.permanent_cor_action.valid &&
+                FinalForm.controls.permanent_cor_action.touched
+              "> Permanent Corrective Action is required</small>
+                <p style="margin: 12px 0px 0px 0px;" class="timestamp" *ngIf="pcatimestamp != null"><b>Date & Time</b> :
+                    {{pcatimestamp}}</p>
+                <p class="timestamp" *ngIf="pcashortid != null"><b>Short ID</b> <b>:</b> {{pcashortid}}</p>
+            </div>
+            <div class="col-md-4" style="padding-left: 0px;">
+                <div class="form-group  text-field">
+                    Process Gap<span class="color">*</span>
+                    <select class="form-control" id="model" formControlName="processgap"
+                        style="font-weight: 400 !important;">
+                        <option value="null" selected disabled>Select Process Gap</option>
+
+                        <option value="Plan Change">Plan Change</option>
+                        <option value="Material Inwarding">Material Inwarding</option>
+                        <option value="Line Feeding">Line Feeding</option>
+                        <option value="Material Handling">Material Handling</option>
+                        <option value="Stock Accuracy">Stock Accuracy</option>
+                        <option value="External Warehouse">External Warehouse</option>
+                        <option value="Others">Others</option>
+                        <option value="Kitting Process">Kitting Process</option>
+
+                    </select>
+                    <small class="text-danger errormsg" *ngIf="
+                                  !FinalForm.controls.processgap.valid &&
+                                  FinalForm.controls.processgap.touched
+                                ">Process Gap is required</small>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="row">
+        <div class="col-md-12">
+            <div style="text-align:right;margin: 20px 0px;">
+
+                <span style="padding-right: 15px;"><button class="btn btn-primary new-ticket" (click)="submit()"><i
+                            class="icon-save"></i>&nbsp;Update</button></span>
+                <!-- <span><button class="btn btn-primary btn-md" (click)="SaveForm()" style=""><i
+                          class="icon-save"></i>Save</button></span> -->
+
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+
+
+<div class="modal fade" id="submit" role="dialog" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-10">
+                        <p class="modalHeader">Submit</p>
+                    </div>
+                    <div class="col-md-2">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <br>
+                    <div class="col-md-12">
+                        <p> Are you sure want to submit ?</p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-sm btn-primary new-ticket" (click)="confirmUpdate()">Yes</button>
+                <button type="button" class="btn btn-sm btn-primary new-ticket" data-dismiss="modal">No </button>
+
+
+            </div>
+        </div>
+    </div>
+</div>

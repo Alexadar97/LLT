@@ -1,0 +1,29 @@
+<section class="dashboard-bg">
+  <div class="container-fluid">
+      <div class="row">
+          <div class="col-md-4 nopadding">
+              <div id="cluster1" (click)="cluster1()" routerLink="subcluster-dashboard">
+                  <!-- <span class="cluster"></span> -->
+                  <span class="head">Vehicle loss trend – Overall</span>
+              </div>
+          </div>
+          <div class="col-md-4">
+              <div id="cluster2" (click)="cluster2()" routerLink="cluster-dashboard">
+                  <!-- <span class="cluster">Logistics line loss trend</span> -->
+                  <span class="head">Logistics line loss trend</span>
+              </div>
+          </div>
+          <div class="col-md-4 nopadding">
+              <div id="cluster3" (click)="cluster3()" routerLink="logistics-dashboard">
+                  <!-- <span class="cluster"> </span> -->
+                  <span class="head">Logistics line losses - Process gaps</span>
+              </div>
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-md-12 card">
+                  <router-outlet></router-outlet>
+          </div>
+      </div>
+  </div>
+</section>

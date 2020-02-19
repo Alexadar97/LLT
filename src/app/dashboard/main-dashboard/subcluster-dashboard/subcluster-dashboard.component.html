@@ -1,0 +1,127 @@
+<app-spinner *ngIf="loading"></app-spinner>
+<section class="cluster-bg">
+  <div class="row">
+      <div class="col-xs-5" style="height: 20px;border-bottom: 1px solid #979797;"></div>
+      <div class="col-md-2" style="text-align: center;">
+          <select class="yearselect" id="year" (change)="clusterList($event.target.value)">
+              <option value="2019">2019</option>
+              <option value="2020">2020</option>
+          </select>
+      </div>
+      <div class="col-xs-5" style="height: 20px;border-bottom: 1px solid #979797;"></div>
+  </div>
+</section>
+<section class="chart-bg">
+  <div class="row" style="margin: 1px 0px 0px 0px;">
+      <div class="col-md-12">
+          <h1 class="operations">SCM</h1>
+      </div>
+  </div>
+  <div class="row" style="margin: 1px 0px 0px 0px;">
+      <div class="col-md-6" style="position: relative;">
+          <div [chart]="scm1" id="SCM1"></div>
+          <span class="headl">Supplier Constraint</span><span class="headr">{{Name1}}</span>
+          <p class="countlist">YDT:{{totlacount1}} <span class="hdt"></span> HDT:{{htdcount1}} <span class="mdt"></span> MDT:{{mdtcount1}}</p>
+      </div>
+      <div class="col-md-6" style="position: relative;">
+          <div [chart]="scm2" id="SCM2"></div>
+          <span class="headl">Part Quality Issue</span><span class="headr">{{Name2}}</span>
+          <p class="countlist">YDT:{{totlacount2}} <span class="hdt"></span> HDT:{{htdcount2}} <span class="mdt"></span> MDT:{{mdtcount2}}</p>
+      </div>
+  </div>
+  <div class="row" style="margin: 31px 0px 0px 0px;">
+      <div class="col-md-6" style="position: relative;">
+          <div [chart]="scm3" id="SCM3"></div>
+          <span class="headl">Logistics Process Gaps</span><span class="headr">{{Name3}}</span>
+          <p class="countlist">YDT:{{totlacount3}} <span class="hdt"></span> HDT:{{htdcount3}} <span class="mdt"></span> MDT:{{mdtcount3}}</p>
+      </div>
+  </div>
+  <div class="row" style="margin: 31px 0px 0px 0px;">
+      <div class="col-md-12">
+          <h1 class="operations">Operations</h1>
+      </div>
+  </div>
+  <div class="row" style="margin: 1px 0px 0px 0px;">
+      <div class="col-md-6" style="position: relative;">
+          <div [chart]="operation1" id="op1"></div>
+          <span class="headl">Assembly Process</span><span class="headr">{{Name4}}</span>
+          <p class="countlist">YDT:{{totlacount4}} <span class="hdt"></span> HDT:{{htdcount4}} <span class="mdt"></span> MDT:{{mdtcount4}}</p>
+      </div>
+      <div class="col-md-6" style="position: relative;">
+          <div [chart]="operation2" id="op2"></div>
+          <span class="headl">Absenteeism</span><span class="headr">{{Name5}}</span>
+          <p class="countlist">YDT:{{totlacount5}} <span class="hdt"></span> HDT:{{htdcount5}} <span class="mdt"></span> MDT:{{mdtcount5}}</p>
+      </div>
+  </div>
+  <div class="row" style="margin: 31px 0px 0px 0px;">
+      <div class="col-md-6" style="position: relative;">
+          <div [chart]="operation3" id="op3"></div>
+          <span class="headl">Equipment issue</span><span class="headr">{{Name6}}</span>
+          <p class="countlist">YDT:{{totlacount6}} <span class="hdt"></span> HDT:{{htdcount6}} <span class="mdt"></span> MDT:{{mdtcount6}}</p>
+      </div>
+      <div class="col-md-6" style="position: relative;">
+          <div [chart]="operation4" id="op4"></div>
+          <span class="headl">Manufacturing process gaps</span><span class="headr">{{Name7}}</span>
+          <p class="countlist">YDT:{{totlacount7}} <span class="hdt"></span> HDT:{{htdcount7}} <span class="mdt"></span> MDT:{{mdtcount7}}</p>
+      </div>
+  </div>
+  <div class="row" style="margin: 31px 0px 0px 0px;">
+      <div class="col-md-12">
+          <h1 class="operations">Cabtrim</h1>
+      </div>
+  </div>
+  <div class="row" style="margin: 1px 0px 0px 0px;">
+      <div class="col-md-6" style="position: relative;">
+          <div [chart]="Cabtrim1" id="ckd1"></div>
+          <span class="headl">CKD trim execution process</span><span class="headr">{{Name8}}</span>
+          <p class="countlist">YDT:{{totlacount8}} <span class="hdt"></span> HDT:{{htdcount8}} <span class="mdt"></span> MDT:{{mdtcount8}}</p>
+      </div>
+      <div class="col-md-6" style="position: relative;">
+          <div [chart]="Cabtrim2" id="ckd2"></div>
+          <span class="headl">CS trim execution process
+              </span><span class="headr">{{Name9}}</span>
+          <p class="countlist">YDT:{{totlacount9}} <span class="hdt"></span> HDT:{{htdcount9}} <span class="mdt"></span> MDT:{{mdtcount9}}</p>
+      </div>
+  </div>
+  <div class="row" style="margin: 31px 0px 0px 0px;">
+      <div class="col-md-12">
+          <h1 class="operations">Others</h1>
+      </div>
+  </div>
+  <div class="row" style="margin: 1px 0px 0px 0px;">
+      <div class="col-md-6" style="position: relative;">
+          <div [chart]="Others1" id="others1"></div>
+          <span class="headl">IT Related Losses
+              </span><span class="headr">{{Name10}}</span>
+          <p class="countlist">YDT:{{totlacount10}} <span class="hdt"></span> HDT:{{htdcount10}} <span class="mdt"></span> MDT:{{mdtcount10}}</p>
+      </div>
+      <div class="col-md-6" style="position: relative;">
+          <div [chart]="Others2" id="others2"></div>
+          <span class="headl">BOM/ Design Issues
+              </span><span class="headr">{{Name11}}</span>
+          <p class="countlist">YDT:{{totlacount11}} <span class="hdt"></span> HDT:{{htdcount11}} <span class="mdt"></span> MDT:{{mdtcount11}}</p>
+      </div>
+  </div>
+  <div class="row" style="margin: 31px 0px 0px 0px;">
+      <div class="col-md-6" style="position: relative;">
+          <div [chart]="Others3" id="others3"></div>
+          <span class="headl">New Projects / Variants
+              </span><span class="headr">{{Name12}}</span>
+          <p class="countlist">YDT:{{totlacount12}} <span class="hdt"></span> HDT:{{htdcount12}} <span class="mdt"></span> MDT:{{mdtcount12}}</p>
+      </div>
+      <div class="col-md-6" style="position: relative;">
+          <div [chart]="Others4" id="others4"></div>
+          <span class="headl">Bus Related Losses
+              </span><span class="headr">{{Name13}}</span>
+          <p class="countlist">YDT:{{totlacount13}} <span class="hdt"></span> HDT:{{htdcount13}} <span class="mdt"></span> MDT:{{mdtcount13}}</p>
+      </div>
+  </div>
+  <div class="row" style="margin:31px 0px 43px 0px">
+      <div class="col-md-6" style="position: relative;">
+          <div [chart]="Others5" id="others5"></div>
+          <span class="headl">Reasons under analysis
+              </span><span class="headr">{{Name14}}</span>
+          <p class="countlist">YDT:{{totlacount14}} <span class="hdt"></span> HDT:{{htdcount14}} <span class="mdt"></span> MDT:{{mdtcount14}}</p>
+      </div>
+  </div>
+</section>

@@ -1,0 +1,25 @@
+section.cluster-bg {
+    padding: 17px 115px 17px 115px;
+}
+.yearselect{
+    box-sizing: border-box;
+    height: 31px;
+    width: 102px;
+    border: 1px solid #979797;
+    border-radius: 2px;
+    background-color: #FFFFFF;
+    color: #000;
+    font-family: corpoS-normal;
+    font-size: 17px;
+}
+h1.operations {
+    font-size: 20px;
+    font-family: corpoS-bold;
+}
+section.chart-bg {
+    margin: 0px 29px;
+}
+div#SCM1,div#SCM2,div#SCM3,div#op1,div#op2,div#op3,div#op4,div#ckd1,div#ckd2,div#others1,div#others2,div#others3,div#others4,div#others5 {
+    background: #f5f2f2;
+    padding: 82px 0px 0px 0px;
+}

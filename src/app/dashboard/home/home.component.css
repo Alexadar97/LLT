@@ -1,0 +1,328 @@
+table.table.table-striped {
+    margin-top: 22px;
+}
+th {
+    border-bottom: 1px solid #979797 !important;
+    white-space: nowrap;
+    border-top: 1px solid #979797 !important;
+        font-family: corpoS-bold;
+        font-size: 16px;
+        padding: 11px 0px 11px 14px !important;
+}
+td{
+    font-family: corpoS-normal;
+        font-size: 15px;
+        padding: 11px 0px 11px 17px !important;
+}
+.modal-header {
+    background: #454545;
+    color: #fff; 
+   
+}
+.new-ticket {
+    background: #003b60;
+    border: none;
+    font-weight: 500;
+    padding: 5px 12px;
+    font-size: 13px;
+}
+.new-ticket:hover {
+    box-shadow: 0 0 7px 0 #003b60;
+}
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+    padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #ddd;
+    white-space: nowrap;
+}
+.home-table {
+    background: #fff;
+    box-shadow: 0 2px 6px 0 rgba(0,0,0,.08);
+    border-radius: 8px;
+}
+table.table.invoice-table tbody td {
+    border: none;
+    color: #000;
+    font-family: corpoS-normal;
+    font-size: 15px;
+    vertical-align: middle;
+}
+tr{
+    cursor: pointer;
+}
+img#img-fluid{
+    padding: 3px 6px 3px 6px;
+    background: #003b60;
+    margin: 0px 0px 0px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.upload-btn{
+    background: #003B60;
+    color: #fff;
+    padding: 3px 6px 3px 6px;
+    font-size: 14px;
+}
+p.all-ticket.mt-2 {
+    padding: 0px 0px 9px 0px !important;
+    font-weight: bold;
+    font-size: 17px;
+}
+.modal-body th{
+    border: 1px solid #dddddd;
+    border-top: 1px solid #dddddd !important;
+    border-bottom: 1px solid #dddddd !important;
+    cursor: auto;
+}
+.modal-body td{
+    cursor: auto;
+}
+
+ul#list-group {
+    display: flex;
+    list-style: none;
+    border-bottom: 1px solid rgb(151, 151, 151);
+}
+li#list-item1, li#list-item2, li#list-item3 {
+    width: 100%;
+    text-align: center;
+    color: #292929;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+    cursor: pointer;
+    font-family: corpoS-bold;
+}
+span.draft {
+    position: absolute;
+    top: -10px;
+    background: #fff;
+    color: #003b60;
+    border-radius: 50%;
+    padding: 3px 8px 0px 7px;
+    font-size: 12px;
+    height: 23px;
+    box-shadow: 0px 2px 9px -3px #000;
+    font-weight: bold;
+}
+span.filter {
+    position: absolute;
+    top: -7px;
+    background: #fff;
+    color: #000;
+    border-radius: 50%;
+    padding: 2px 7px 0px 5px;
+    font-size: 13px;
+    right: 5px;
+}
+
+/* modal-style */
+
+h2.modal-head {
+    color: #000000;
+    font-size: 18px;
+    line-height: 24px;
+    margin: 12px 0px 19px 0px;
+}
+button.clear-btn {
+    border: none;
+    background-color: #EEEEEE;
+    color: #292929;
+    padding: 2px 10px;
+    border-radius: 3px;
+}
+button.Apply-btn {
+    border: none;
+    color: #fff;
+    padding: 2px 14px;
+    background-color: #013B60;
+    border-radius: 3px;
+    margin: 11px 0px 0px 14px;
+}
+div#panel {
+    position: absolute;
+    background: #fff;
+    z-index: 9999;
+    display: none;
+    width: 101.1%;
+    height: 70vh;
+    left: 0px;
+    top: 2px;
+}
+span.close-filter {
+    position: absolute;
+    bottom: -16px;
+    right: 0px;
+    background: #fff;
+    padding: 0px 7px 0px 7px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* filter check box style */
+
+label.checkbox-inline {
+    margin: 0px !important;
+}
+label.radio-inline {
+    margin: 0px !important;
+}
+input[type="checkbox"] {
+    cursor: pointer;
+}
+.btn-go{
+    width: 17px;
+}
+.modalHeader {
+    font-size: 17px;
+    font-weight: bold;
+    margin:0px 0px 18px 0px !important
+}  
+.edit-mdola{
+    text-align: right;
+    width: 16px;
+    margin: 0px 0px 0px 8px;
+    float: right;
+    cursor: pointer !important;
+}
+span.color {
+    color: red;
+}
+p.head {
+    padding: 6px 0px 13px 0px;
+}
+#downlaod{
+    width: 32px;
+    cursor: pointer;
+    padding: 6px 7px;
+    background: #003b60;
+    border-radius: 3px;
+    margin: 0px 0px;
+    float: right;
+}
+/* .form-group.text-field {
+    display: flex;
+}  */
+i.fa.fa-plus {
+    margin: 0px 7px 0px 0px;
+    border-radius: 50%;
+}
+
+
+label.control-label{
+    padding:0px !important;
+    font-family: corpoS-normal;
+    font-size: 17px;
+  }
+  .text-bold{
+    font-weight: bold
+  }
+  button.btn.btn-default.btn-sm.dropdown-toggle:focus {
+    box-shadow: none;
+  }
+  ul.dropdown-menu.show {
+    padding: 10px;
+    height: auto;
+    overflow: auto;
+  }
+  .dropdown-menu.filtermenu {
+    right: inherit !important;
+    left: inherit !important;
+    min-width: 180px !important;
+}
+  ul.dropdown-menu.show li {
+    cursor: pointer;
+    font-weight: normal;
+    display: block;
+    white-space: pre;
+    min-height: 1.2em;
+    padding: 0px 2px 1px;
+  }
+  .control__indicator.filterchkbox{
+    position: absolute;
+    left: 8px;
+    height: 15px;
+    width: 15px;
+    background: #9E9E9E;
+    bottom: 3px;
+} 
+
+.changeindicator {
+    position: absolute;
+    top: 3px;
+    left: 16px !important;
+    height: 15px;
+      width: 15px;
+    background: #9E9E9E;
+  }
+  .control {
+    display: block;
+    position: relative;
+    padding-left: 30px;
+    margin-bottom: 15px;
+    cursor: pointer;
+    font-size: 12px;
+        font-weight: 500;
+  }
+  .control input {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+  }
+  .control__indicator {
+    position: absolute;
+    left: 20px;
+    height: 15px;
+    width: 15px;
+    background: #9E9E9E;
+  }
+  .control:hover input ~ .control__indicator,
+  .control input:focus ~ .control__indicator {
+    background: #ccc;
+  }
+  .control input:checked ~ .control__indicator {
+    background: #000;;;
+  }
+  .control input:disabled ~ .control__indicator {
+    background: #e6e6e6;
+    opacity: 0.6;
+    pointer-events: none;
+  }
+  .control__indicator:after {
+    content: '';
+    position: absolute;
+    display: none;
+  }
+  .control input:checked ~ .control__indicator:after {
+    display: block;
+  }
+  .control--checkbox .control__indicator:after {
+    left: 6px;
+      top: 2px;
+      width: 4px;
+      height: 8px;
+    border: solid #fff;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+  .control--checkbox input:disabled ~ .control__indicator:after {
+    border-color: #7b7b7b;
+  }
+  .control--radio .control__indicator {
+    border-radius: 50%;
+  }
+  .control--radio .control__indicator:after {
+    left: 4px;
+    top: 4px;
+    height: 7px;
+    width: 7px;
+    border-radius: 50%;
+    background: #fff;
+  }
+  .ppsclass{
+    border-bottom : 3px solid rgb(36, 37, 54);
+  }
+  .button-group {
+    margin: 0px 23px 0px 8px;
+}

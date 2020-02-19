@@ -1,0 +1,223 @@
+<!-- <div class="container-fluid">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-8">
+                    <h2 class="title">Department</h2>
+                </div>
+                <div class="col-md-3">
+                    <div class="input-group" style="margin: 12px 0px 0px 0px;">
+                        <input type="text" class="form-control" id="searchglobal" placeholder="Search"
+                            (input)="getsearchlist($event.target.value)" autocomplete="off" name="search" style="height:31px;">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" style="background: #eee;height:31px;" type="submit"><i
+                                    class="glyphicon glyphicon-search"></i></button>
+                        </div>
+                    
+                    </div>
+                </div>
+                <div class="col-md-1" style="text-align: end;">
+                    <button class="back-btn" routerLink="../../home">Back</button>
+                </div>
+            </div>
+            <div class="row">
+                <section class="bg">
+                    <div class="col-md-4">
+                        <form [formGroup]="DeptForm">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <div class="form-group">
+                                            <label class="head">Department Name</label>
+                                            <input type="text" class="form-control" formControlName="departmentname">
+                                            <small class="text-danger"
+                                                *ngIf="!DeptForm.controls.departmentname.valid && DeptForm.controls.departmentname.touched">Department
+                                                is required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <button class="back-btn" (click)="saveDept()">Submit</button>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                    <div class="col-md-8">
+                        <table class="table responsive">
+                            <thead>
+                                <tr style="background: #fff;">
+                                    <th>S.No</th>
+                                    <th>Department Name</th>
+                                    <th>Edit</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <ng-container *ngFor="let data of getDeptListdata |  paginate: { itemsPerPage: 10, currentPage: p1,id: 'one'}let i = index ">
+                                        <tr>
+                                                <td>{{((p1- 1) * 10 )+ (i+1)}}</td>
+                                                <td>{{(data.departmentname != null) ?data.departmentname : '-' }}</td>
+                                                <td><img style="cursor: pointer;" src="assets/images/edit-img.png" (click)="edit(data.id)"></td>
+                                            </tr>
+                                </ng-container>
+                            </tbody>
+                        </table>
+                        <pagination-controls style="text-align: right;" *ngIf="getDeptListdata?.length!=0" (pageChange)="p1 = $event" #api
+                id="one">
+            </pagination-controls>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="submit" role="dialog" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-sm">
+          <div class="modal-content">
+            <div class="modal-body">
+              <div class="row">
+                <div class="col-md-10">
+                  <p class="modalHeader">Submit</p>
+                </div>
+                <div class="col-md-2">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <br>
+                <div class="col-md-12">
+                  <p> Are you sure want to submit ?</p>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-sm btn-primary new-ticket" data-dismiss="modal">No </button>
+              <button type="button" class="btn btn-sm btn-primary new-ticket" (click)="confrimsubmitprrequest()">Yes</button>
+            </div>
+          </div>
+        </div>
+      </div> -->
+
+      <app-spinner *ngIf="isLoading"></app-spinner>
+      <section class="master-bg">
+        <div class="container-fluid">
+              <div class="row">
+                  <div class="col-md-12">
+                      <div class="row">
+                          <div class="col-md-9">
+                              <h2 class="title">Department</h2>
+                          </div>
+                          <div class="col-md-3">
+                              <div class="input-group" style="margin: 12px 0px 0px 0px;">
+                                  <input type="text" class="form-control" id="searchglobal" placeholder="Search Department Wise"
+                                      (input)="getsearchlist($event.target.value)" autocomplete="off" name="search" style="height:31px;">
+                                  <div class="input-group-btn">
+                                      <button class="btn btn-default" style="background: #eee;height:31px;" type="submit"><i
+                                              class="glyphicon glyphicon-search"></i></button>
+                                  </div>
+                                  <!-- <datalist id="partdata">
+                                              <ng-container *ngFor="let list of ppssearchlist ">
+                                                  <option value={{list.ppssearch}}>{{list.ppssearch}}</option>
+                                              </ng-container>
+                                          </datalist> -->
+                              </div>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <section class="bg">
+                              <div class="col-md-4">
+                                  <div class="row">
+                                          <form [formGroup]="SubclusterForm">
+                                      <div class="col-md-12">
+                                              <div class="form-group">
+                                                      <label class="head">Sub Cluster<span class="red">*</span></label>
+                                                      <select class="form-control" formControlName="subclusterid">
+                                                        <option value="null" selected disabled>Select Sub Cluster</option>
+                                                        <ng-container *ngFor="let data of geClusterListdata">
+                                                              <option value={{data.id}}>{{data.subclustername}}</option>
+                                                        </ng-container>
+                                                      </select>
+                                                      <small class="text-danger"
+                                                  *ngIf="!SubclusterForm.controls.subclusterid.valid && SubclusterForm.controls.subclusterid.touched">Sub Cluster
+                                                  is required</small>
+                                                    </div>
+                                          <div class="form-group">
+                                              <label class="head">Department Name<span class="red">*</span></label>
+                                              <input type="text" class="form-control" formControlName="finalresponsename" placeholder="Department Name">
+                                              <small class="text-danger"
+                                                  *ngIf="!SubclusterForm.controls.finalresponsename.valid && SubclusterForm.controls.finalresponsename.touched">Department Name
+                                                  is required</small>
+                                          </div>
+                                      </div>
+                                      </form>
+                                      <div class="col-md-12">
+                                          <button class="back-btn" (click)="save()">Submit</button>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="col-md-8">
+                                  <table class="table responsive">
+                                      <thead>
+                                          <tr style="background: #fff;">
+                                              <th>S.No</th>
+                                              <th>Department Name</th>
+                                              <th>Sub Cluster Name</th>
+                                              <th>Edit</th>
+                                          </tr>
+                                      </thead>
+                                      <tbody>
+                                              <ng-container
+                                              *ngFor="let data of getListdata |  paginate: { itemsPerPage: 10, currentPage: p1,id: 'one'}let i = index ">
+                                              <tr>
+                                                  <td>{{((p1- 1) * 10 )+ (i+1)}}</td>
+                                                  <td>{{(data.finalresponsename != null) ?data.finalresponsename : '-' }}</td>
+                                                  <td>{{(data.subClustername != null) ?data.subClustername : '-' }}</td>
+                                                  <td><img style="cursor: pointer;" src="assets/images/edit-img.png" (click)="edit(data.id)"></td>
+                                              </tr>
+                                          </ng-container>
+                                      </tbody>
+                                  </table>
+                                  <pagination-controls style="text-align: right;margin: 0px 0px 80px 0px;" *ngIf="getListdata?.length!=0"
+                                  (pageChange)="p1 = $event" #api id="one">
+                              </pagination-controls>
+                              <h4 *ngIf="getListdata.length==0" style="text-align: center;width: 100%;margin-top: 5%;">
+                                  No data Available
+                              </h4>
+                              </div>
+                          </section>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </section>
+      
+      
+          <!-- save modal -->
+      
+      
+      <div class="modal fade" id="submit" role="dialog" data-backdrop="static" data-keyboard="false">
+              <div class="modal-dialog modal-sm">
+                  <div class="modal-content">
+                      <div class="modal-body">
+                          <div class="row">
+                              <div class="col-md-10">
+                                  <p class="modalHeader">Submit</p>
+                              </div>
+                              <div class="col-md-2">
+                                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                              </div>
+                              <br>
+                              <div class="col-md-12">
+                                  <p> Are you sure want to submit ?</p>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="modal-footer">
+                          <button type="button" class="btn btn-sm btn-primary new-ticket"
+                              (click)="confrimsubmitprrequest()">Yes</button>
+                          <button type="button" class="btn btn-sm btn-primary new-ticket" data-dismiss="modal">No </button>
+                          
+                      </div>
+                  </div>
+              </div>
+          </div>      

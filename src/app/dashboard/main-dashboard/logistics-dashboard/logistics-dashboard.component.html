@@ -1,0 +1,68 @@
+<app-spinner *ngIf="loading"></app-spinner>
+<section class="cluster-bg">
+  <div class="row">
+      <div class="col-xs-5" style="height: 20px;border-bottom: 1px solid #979797;"></div>
+      <div class="col-md-2" style="text-align: center;">
+          <select class="yearselect" id="year">
+              <option value="2019">2019</option>
+              <option value="2020">2020</option>
+          </select>
+      </div>
+      <div class="col-xs-5" style="height: 20px;border-bottom: 1px solid #979797;"></div>
+  </div>
+</section>
+<section class="chart-bg">
+  <div class="row" style="margin: 1px 0px 0px 0px;">
+      <div class="col-md-12">
+          <h1 class="operations">Logistics</h1>
+      </div>
+  </div>
+  <div class="row" style="margin: 1px 0px 0px 0px;">
+      <div class="col-md-6" style="position: relative;">
+          <div [chart]="Logistics1" id="Logistics1"></div>
+          <span class="headl">Plan Change</span><span class="headr">{{Name1}}</span>
+          <p class="countlist">YDT:{{totlacount1}} <span class="hdt"></span> HDT:{{htdcount1}} <span class="mdt"></span> MDT:{{mdtcount1}}</p>
+      </div>
+      <div class="col-md-6" style="position: relative;">
+          <div [chart]="Logistics2" id="Logistics2"></div>
+          <span class="headl">Material Inwarding</span><span class="headr">{{Name2}}</span>
+          <p class="countlist">YDT:{{totlacount2}} <span class="hdt"></span> HDT:{{htdcount2}} <span class="mdt"></span> MDT:{{mdtcount2}}</p>
+      </div>
+  </div>
+  <div class="row" style="margin: 31px 0px 0px 0px;">
+      <div class="col-md-6" style="position: relative;">
+          <div [chart]="Logistics3" id="Logistics3"></div>
+          <span class="headl">Line Feeding</span><span class="headr">{{Name3}}</span>
+          <p class="countlist">YDT:{{totlacount3}} <span class="hdt"></span> HDT:{{htdcount3}} <span class="mdt"></span> MDT:{{mdtcount3}}</p>
+      </div>
+      <div class="col-md-6" style="position: relative;">
+          <div [chart]="Logistics4" id="Logistics4"></div>
+          <span class="headl">Material Handling</span><span class="headr">{{Name4}}</span>
+          <p class="countlist">YDT:{{totlacount4}} <span class="hdt"></span> HDT:{{htdcount4}} <span class="mdt"></span> MDT:{{mdtcount4}}</p>
+      </div>
+  </div>
+  <div class="row" style="margin: 31px 0px 0px 0px;">
+      <div class="col-md-6" style="position: relative;">
+          <div [chart]="Logistics5" id="Logistics5"></div>
+          <span class="headl">Stock Accuracy</span><span class="headr">{{Name5}}</span>
+          <p class="countlist">YDT:{{totlacount5}} <span class="hdt"></span> HDT:{{htdcount5}} <span class="mdt"></span> MDT:{{mdtcount5}}</p>
+      </div>
+      <div class="col-md-6" style="position: relative;">
+          <div [chart]="Logistics6" id="Logistics6"></div>
+          <span class="headl">External Warehouse</span><span class="headr">{{Name6}}</span>
+          <p class="countlist">YDT:{{totlacount6}} <span class="hdt"></span> HDT:{{htdcount6}} <span class="mdt"></span> MDT:{{mdtcount6}}</p>
+      </div>
+  </div>
+  <div class="row" style="margin:31px 0px 43px 0px">
+      <div class="col-md-6" style="position: relative;">
+          <div [chart]="Logistics7" id="Logistics7"></div>
+          <span class="headl">Others</span><span class="headr">{{Name7}}</span>
+          <p class="countlist">YDT:{{totlacount7}} <span class="hdt"></span> HDT:{{htdcount7}} <span class="mdt"></span> MDT:{{mdtcount7}}</p>
+      </div>
+      <div class="col-md-6" style="position: relative;">
+          <div [chart]="Logistics8" id="Logistics8"></div>
+          <span class="headl">Kitting Process</span><span class="headr">{{Name8}}</span>
+          <p class="countlist">YDT:{{totlacount8}} <span class="hdt"></span> HDT:{{htdcount8}} <span class="mdt"></span> MDT:{{mdtcount8}}</p>
+      </div>
+  </div>
+</section>

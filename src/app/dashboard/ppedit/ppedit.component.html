@@ -1,0 +1,210 @@
+<app-spinner *ngIf="isLoading"></app-spinner>
+<div class="container-fluid">
+  <div class="row" id="margin-bottom" style="margin-top:30px">
+      <div class="col-md-3">
+          <h4>PPS</h4>
+      </div>
+      <div class="col-md-7">
+      </div>
+      <div class="col-md-2" style="text-align:right">
+          <button class="btn btn-primary new-ticket" routerLink="../pps">Back</button>
+      </div>
+  </div>
+  <form [formGroup]="BasicForm">
+      <div class="row" id="margin-bottom">
+          <div class="col-md-4">
+              <div class="form-group  text-field">
+                  Month
+                  <select class="form-control" id="model" formControlName="month" style="font-weight: 400 !important;"
+                      disabled>
+                      <option disabled>Select Month</option>
+
+                      <option value="Jan">Jan</option>
+                      <option value="Feb">Feb</option>
+                      <option value="Mar">Mar</option>
+                      <option value="Apr">Apr</option>
+                      <option value="May">May</option>
+                      <option value="Jun">Jun</option>
+                      <option value="Jul">Jul</option>
+                      <option value="Aug">Aug</option>
+                      <option value="Sep">Sep</option>
+                      <option value="Oct">Oct</option>
+                      <option value="Nov">Nov</option>
+                      <option value="Dec">Dec</option>
+
+                  </select>
+              </div>
+          </div>
+          <div class="col-md-4">
+              <div class="form-group  text-field">
+                  Date
+                  <input type="text" class="form-control" formControlName="date" name="bday" disabled>
+              </div>
+          </div>
+          <div class="col-md-4">
+              <div class="form-group  text-field">
+                  Model
+                  <select class="form-control" id="model" formControlName="model" style="font-weight: 400 !important;"
+                      disabled>
+                      <option disabled>Select Model</option>
+
+                      <option>HDT</option>
+                      <option>MDT</option>
+                  </select>
+              </div>
+          </div>
+
+
+      </div>
+      <div class="row" id="margin-bottom">
+
+          <div class="col-md-4">
+              <div class="form-group  text-field">
+                  Loss Quantity
+                  <input type="number" class="form-control" value="" formControlName="loss_qty" placeholder=""
+                      disabled>
+              </div>
+          </div>
+          <div class="col-md-4">
+              Loss Time
+              <input type="number" class="form-control" value="" formControlName="loss_time" placeholder="" disabled>
+
+          </div>
+          <div class="col-md-4">
+              <div class="form-group  text-field">
+                  Loss Description
+                  <input type="text" class="form-control" value="" formControlName="loss_description" placeholder=""
+                      disabled>
+              </div>
+          </div>
+      </div>
+      <div class="row" id="margin-bottom" style="border-bottom:1px solid #eee;">
+          <div class="col-md-4">
+              <div class="form-group  text-field">
+                  Initial Responsibility
+                  <input class="form-control" id="model" formControlName="init_responsibility"
+                      style="font-weight: 400 !important;" disabled>
+              </div>
+          </div>
+          <div class="col-md-4">
+              <div class="form-group  text-field">
+                  PPS Main Cluster
+                      <select name="opsmain" class="form-control" formControlName="pps_main_cluster_id"
+                      (change)="opssubcluster($event.target.value)" disabled>
+                      <option value="null" selected disabled>Select OPS Main Cluster</option>
+                      <ng-container *ngFor="let data of getListdata; let i=index">
+                          <option value={{data.id}}>{{data.clustername}}</option>
+                      </ng-container>
+                  </select>
+              </div>
+          </div>
+          <div class="col-md-4">
+              <div class="form-group  text-field">
+                  PPS Sub Cluster
+                  <input type="text" class="form-control" value="" formControlName="pps_sub_cluster" placeholder="" disabled>
+
+
+              </div>
+          </div>
+      </div>
+  </form>
+ <form  [formGroup]="BasicForm">
+  <div class="row">
+      <div class="col-md-4">
+          <div class="form-group  text-field">
+              OPS Main Cluster
+              <select name="opsmain" class="form-control" formControlName="ops_main_cluster_id"
+                  (change)="opssubcluster($event.target.value)" disabled>
+                  <option value="null" selected disabled>Select OPS Main Cluster</option>
+                  <ng-container *ngFor="let data of getListdata; let i=index">
+                      <option value={{data.id}}>{{data.clustername}}</option>
+                  </ng-container>
+              </select>
+
+              <small class="text-danger" *ngIf="
+                                  !FinalForm.controls.ops_main_cluster_id.valid &&
+                                  FinalForm.controls.ops_main_cluster_id.touched
+                                "> OPS Main Cluster is required</small>
+          </div>
+      </div>
+      <div class="col-md-4">
+          <div class="form-group  text-field">
+              OPS SubCluster
+              <input  name="opssub" class="form-control" formControlName="ops_sub_cluster" disabled>
+          </div>
+      </div>
+      <div class="col-md-4">
+              <div class="form-group  text-field">
+                      Final Responsibility
+                  <input  name="opssub" class="form-control" formControlName="final_resposibility" disabled>
+              </div>
+          </div>
+  </div>
+</form>
+  
+      <div class="row">
+        <form [formGroup]="BasicForm">
+        <div class="col-md-4">
+                Justification
+                <input type="text" class="form-control" id="model" formControlName="frjustification"
+                    style="font-weight: 400 !important;" placeholder="Justification" readonly>
+          </div>
+        </form> 
+        <form [formGroup]="OPSForm">
+              <div class="col-md-4">
+                  Supplier Code
+                      <input type="text" class="form-control" value="" formControlName="vendor_code" placeholder="Supplier Code">
+                      <!-- <small class="text-danger errormsg" *ngIf="
+                                                                !OPSForm.controls.vendor_code.valid &&
+                                                                OPSForm.controls.vendor_code.touched
+                                                              ">Supplier Code is required</small> -->
+                  </div>
+          <div class="col-md-4">
+              Supplier Name
+              <input type="text" class="form-control" value="" formControlName="supplier_name" placeholder="Supplier Name">
+              <!-- <small class="text-danger errormsg" *ngIf="
+                                                        !OPSForm.controls.supplier_name.valid &&
+                                                        OPSForm.controls.supplier_name.touched
+                                                      ">Supplier Name is required</small> -->
+          </div>
+        </form>
+      </div>
+
+  <div class="row">
+      <div class="col-md-12">
+          <div style="text-align:right;margin: 20px 0px;">
+
+              <button class="btn btn-primary new-ticket" (click)="Submit()"><i class="icon-save"></i>&nbsp;Submit</button>
+
+          </div>
+      </div>
+  </div>
+</div>
+
+
+
+<div class="modal fade" id="submit" role="dialog" data-backdrop="static" data-keyboard="false">
+  <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+          <div class="modal-body">
+              <div class="row">
+                  <div class="col-md-10">
+                      <p class="modalHeader">Submit</p>
+                  </div>
+                  <div class="col-md-2">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  </div>
+                  <br>
+                  <div class="col-md-12">
+                      <p> Are you sure want to submit ?</p>
+                  </div>
+              </div>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-sm btn-primary new-ticket" (click)="confirmSubmit()">Yes</button>
+              <button type="button" class="btn btn-sm btn-primary new-ticket" data-dismiss="modal">No </button>
+
+          </div>
+      </div>
+  </div>
+</div>

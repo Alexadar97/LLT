@@ -1,0 +1,47 @@
+section.dashboard-bg{
+    margin: 46px 0px 76px 39px;
+}
+.card{
+    background: #fff;
+}
+span.head {
+    font-size: 19px;
+    font-family: corpoS-bold;
+}
+span.cluster {
+    font-size: 15px;
+    font-family: corpoS-normal;
+    color: #939393;
+}
+#cluster1{
+    height: 56px;	
+    background-color: #DCDCDC;
+    text-align: center;
+    padding: 12px 0px 0px 0px;
+    cursor: pointer;
+    color: #000;
+}
+#cluster2{
+    height: 56px;	
+    background-color: #DCDCDC;
+    text-align: center;
+    padding: 12px 0px 0px 0px;
+    cursor: pointer;
+    color: #000;
+}
+#cluster3{
+    height: 56px;	
+    background-color: #DCDCDC;
+    text-align: center;
+    padding: 12px 0px 0px 0px;
+    cursor: pointer;
+    color: #000;
+}
+.Tabcluster{
+    background-color: #fff !important;
+    border-bottom: 1px solid gainsboro;
+    color: #939393;
+}
+div#cluster1:focus,div#cluster2:focus,div#cluster3:focus {
+    outline: none;
+}

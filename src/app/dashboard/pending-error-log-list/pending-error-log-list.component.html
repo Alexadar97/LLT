@@ -1,0 +1,92 @@
+<app-spinner *ngIf="isLoading"></app-spinner>
+<div class="row" style="margin-top: 19px;">
+  <div class="col-md-12" style="text-align:right">
+          <button class="btn btn-primary new-ticket" (click)="back()">Back</button>
+      </div>
+</div>
+<div class="row" style="margin-top: 23px;">
+  <div class="col-md-10">
+          <h2 class="tab-head">Error Logs</h2>
+  </div>
+  <div class="col-md-2" style="text-align: right;">
+          <button type="button" class="btn btn-primary new-ticket"
+          style="width: 72%;" (click)="fileuploadmodal()">
+              <img style="padding: 0px 0px 0px 0px;width: 18px;margin: 0px 5px 0px 0px;" src="assets/images/upload-file.png">Upload
+          </button>
+  </div>
+</div>
+<div class="row" style="margin-top: 29px;">
+  <div class="col-md-12">
+      <ng-container>
+          <div class="table-responsive vendortable" *ngIf="Errorlistdata.length>0">
+              <table class="table table-striped home-table">
+                  <thead>
+                      <tr class="tr-head">
+                          <th style="text-align: center;">S.No</th>
+                          <th>Uploaded Date & Time</th>
+                          <th>Uploaded By</th>
+                          <th>Error Description</th>
+                          <th>Column Name</th>
+                          <th>Error Line No</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <ng-container
+                          *ngFor="let data of Errorlistdata |  paginate: { itemsPerPage: 10, currentPage: p1,id: 'one'}let i = index">
+
+                          <tr style="cursor: pointer;">
+                              <td style="text-align: center;">{{((p1- 1) * 10 + i+1)}}</td>
+                              <td>{{(data?.createdate !=null) ? data?.createdate : '-'}}</td>
+                              <td>{{(data?.shortid !=null) ? data?.shortid : '-'}}</td>
+                              <td>{{(data?.errorname !=null) ? data?.errorname : '-'}}</td>
+                              <td>{{(data?.errcolumnname !=null) ? data?.errcolumnname : '-'}}</td>
+                              <td>{{(data?.linenum !=null) ? data?.linenum : '-'}}</td>
+                          </tr>
+                      </ng-container>
+                  </tbody>
+              </table>
+          </div>
+      </ng-container>
+      <pagination-controls style="text-align: right;" *ngIf="Errorlistdata?.length!=0"
+          (pageChange)="p1 = $event" #api id="one">
+      </pagination-controls>
+      <h4 *ngIf="Errorlistdata.length==0" style="text-align: center;width: 100%;margin-top: 5%;">
+          No data Available
+      </h4>
+  </div>
+</div>
+
+
+<!-- File upload -->
+
+<div class="modal fade" id="fileupload">
+      <div class="modal-dialog modal-sm">
+          <div class="modal-content">
+              <div class="modal-body">
+                  <div class="row">
+                      <div class="col-md-12 text-center">
+                          <p class="all-ticket mt-2" style="margin:0;padding: 0;">Upload File</p>
+                          <label for="uploadFile" class="btn btn-sm upload-btn cursor mt-3">
+                              <img style="width: 19px;" src="assets/images/upload-file.png">&nbsp;&nbsp; Choose File</label>
+                          <br> {{filename}}
+                          <br>
+                          <input type="file" id="uploadFile" style="display: none"
+                              (change)="uploadfile($event)"
+                              accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel">
+  
+                      </div>
+                  </div>
+              </div>
+  
+              <!-- Modal footer -->
+              <div class="modal-footer">
+                  <button type="button" id="btn-color" class="btn btn-sm btn-primary new-ticket"
+                      data-dismiss="modal" (click)="Closmodal()">Close</button>
+                  <button type="button" id="btn-color" class="btn btn-sm btn-primary new-ticket"
+                      (click)="ConfirmUploadFile()">Submit</button>
+  
+              </div>
+  
+          </div>
+      </div>
+  </div>

@@ -1,0 +1,29 @@
+section.cluster-bg {
+    padding: 17px 115px 17px 115px;
+}
+.yearselect{
+    box-sizing: border-box;
+    height: 31px;
+    width: 102px;
+    border: 1px solid #979797;
+    border-radius: 2px;
+    background-color: #FFFFFF;
+    color: #000;
+    font-family: corpoS-normal;
+    font-size: 17px;
+}
+h1.operations {
+    font-size: 20px;
+    font-family: corpoS-bold;
+}
+section.inner-chart-bg {
+    padding: 9px 41px 0px 41px;
+    position: absolute;
+    z-index: 99999;
+    width: 100%;
+    right: 0px;
+}
+div#IPL,div#IBL,div#OBL,div#MHE,div#LCIM,div#PPS,div#SCM {
+    background: #f5f2f2;
+    padding: 82px 0px 0px 0px;
+}

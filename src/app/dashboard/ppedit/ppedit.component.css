@@ -1,0 +1,78 @@
+#margin-bottom{
+    margin-bottom: 6px;
+    
+}
+.color{
+    color: red;
+}
+.new-ticket {
+    background: #003b60;
+    border: none;
+    font-weight: 700;
+    padding-bottom: 5px;
+}
+.new-ticket:hover {
+    box-shadow: 0 0 7px 0 #003b60;
+}
+input.disabled {
+    opacity: 0.5;
+}
+table.table.table-striped {
+    margin-top: 70px;
+}
+th {
+    border-bottom: 1px solid #979797 !important;
+    white-space: nowrap;
+    border-top: 1px solid #979797 !important;
+}
+.modal-header {
+    background: #454545;
+    color: #fff;
+   
+}
+.new-ticket {
+    background: #003b60;
+    border: none;
+    font-weight: 700;
+    padding-bottom: 5px;
+}
+.new-ticket:hover {
+    box-shadow: 0 0 7px 0 #003b60;
+}
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+    padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #ddd;
+    white-space: nowrap;
+}
+.home-table {
+    background: #fff;
+    box-shadow: 0 2px 6px 0 rgba(0,0,0,.08);
+    border-radius: 8px;
+}
+table.table.invoice-table tbody td {
+    border: none;
+    color: #000;
+    font-family: corpoS-normal;
+    font-size: 15px;
+    vertical-align: middle;
+}
+p.modalHeader {
+    font-size: 17px;
+    font-weight: bold;
+}
+input, select {
+    cursor: auto !important;
+}
+p.modalHeader {
+    font-size: 17px;
+    font-weight: bold;
+}
+.form-group.text-field{
+    font-family: corpoS-normal;
+    font-size: 17px;
+}
+h4{
+    font-family: corpoS-bold;
+}

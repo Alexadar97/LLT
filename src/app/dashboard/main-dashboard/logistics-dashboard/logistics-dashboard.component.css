@@ -1,0 +1,25 @@
+section.cluster-bg {
+    padding: 17px 115px 17px 115px;
+}
+.yearselect{
+    box-sizing: border-box;
+    height: 31px;
+    width: 102px;
+    border: 1px solid #979797;
+    border-radius: 2px;
+    background-color: #FFFFFF;
+    color: #000;
+    font-family: corpoS-normal;
+    font-size: 17px;
+}
+h1.operations {
+    font-size: 20px;
+    font-family: corpoS-bold;
+}
+section.chart-bg {
+    margin: 0px 29px;
+}
+div#Logistics1,div#Logistics2,div#Logistics3,div#Logistics4,div#Logistics5,div#Logistics6,div#Logistics7,div#Logistics8{
+    background: #f5f2f2;
+    padding: 82px 0px 0px 0px;
+}

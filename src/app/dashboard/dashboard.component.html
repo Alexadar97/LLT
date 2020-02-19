@@ -1,0 +1,116 @@
+<nav class="site-navbar navbar navbar-default navbar-fixed-top navbar-mega" role="navigation">
+
+    <div class="innerhead">
+        <img class="innerpgtop" src="assets/images/innerpagetopbg.jpg">
+        <img class="innerpglogo" src="assets/images/loginpglogo.png">
+    </div>
+    <nav class="navbar navbar-default">
+
+    </nav>
+    <div>
+        <div style="position: absolute;     
+        right: 77px;
+        top: 22px;
+        color: #fff;">
+            <i class="icon-user" style="font-size: 18px;"></i>&nbsp;&nbsp;
+            <!-- [{{userdetail.usertype}}] -->
+        </div>
+
+    </div>
+    <p class="username">{{username}}</p>
+    <button class="btn btn-default" (click)="logut()" routerLink="/../login" style="position: absolute;
+    right: 30px;top: 17px;   padding: 2px 5px 2px 5px;"><img src="assets/images/logout.png" width="20px"></button>
+</nav>
+
+<div class="row" style="background: #eee;width: 100%;">
+    <div class="col-md-2" id="side-bg">
+        <ul class="list-group" style="padding-left: 10px;padding: 63px 0px 0px 0px;">
+            <li class="list-group-item list-group-item-action list-item" style="font-size: 22px;font-weight: bold;padding: 19px 0px 0px 9px;">Line Loss Tracker</li>
+            <li *ngIf="usertype == 'admin'" class="list-group-item list-group-item-action list-item llt" id="dashboard" routerLink="main-dashboard"
+                (click)="dashboard()"><img class="side-imag" src="assets/images/dashboard.svg">Dashboard</li>
+            <li class="list-group-item list-group-item-action list-item" id="llt" (click)="llt()"><img class="side-imag"
+                    src="assets/images/line-loss.png">Inprogress</li>
+            <!-- <li id="sample" class="list-item" routerLink="home">PPS</li> -->
+
+
+            <!-- <div class="container-fluid">
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                  <ul class="nav navbar-nav">        
+                    <li class="dropdown">
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Setting <span class="caret"></span></a>
+                      <ul class="dropdown-menu">
+                        <li id="list-item" routerLink="master/cluster">Cluster</li>
+                        <li id="list-item" routerLink="master/sub-cluster">Sub Cluster</li>
+                        <li id="list-item" routerLink="master/department">Department</li>
+                      </ul>
+                    </li>
+                  </ul>
+                </div>
+              </div> -->
+            <li class="list-group-item list-group-item-action list-item" id="report" routerLink="report"
+                (click)="report()"><img class="side-imag" src="assets/images/report.png">Aligned losses</li>
+            <li>
+                <div class="row" id="body-row" *ngIf="usertype == 'admin'">
+                    <div id="sidebar-container" class="sidebar-expanded d-none d-md-block">
+                        <ul class="list-group">
+                            <li class="menu-collapsed" style="list-style: none;background: #000;padding-left: 0px;">
+                                <div id="click_toggle">
+                                    <img class="side-imag" src="assets/images/settings-sidebar.png"><span
+                                        class="Setting">Settings</span>
+                                        <!-- <img class="drop-down" src="assets/images/down-button.png"> -->
+                                </div>
+                                <ul class="list-group" id="sub_id" style="padding: 7px 0px 0px 0px;">
+                                    <li class="list-item" style="margin: 6px 0px 0px 0px;"> <a id="cluster"
+                                            class="list-group-item list-group-item-action bg-dark text-white"
+                                            routerLink="master/cluster" (click)="cluster()">
+                                            <span class="menu-collapsed"><img class="side-imag"
+                                                    src="assets/images/cluster.png">Cluster</span>
+                                        </a></li>
+                                    <li class="list-item">
+                                        <a id="subcluster"
+                                            class="list-group-item list-group-item-action bg-dark text-white"
+                                            routerLink="master/sub-cluster" (click)="subcluster()">
+                                            <span class="menu-collapsed"><img class="side-imag"
+                                                    src="assets/images/sub-cluster.png">Sub Cluster</span> </a>
+                                    </li>
+
+
+                                    <li class="list-item">
+                                        <a id="dept" class="list-group-item list-group-item-action bg-dark text-white"
+                                            routerLink="master/department" (click)="dept()">
+                                            <span class="menu-collapsed"><img class="side-imag"
+                                                    src="assets/images/department.png">Department</span>
+                                        </a>
+                                    </li>
+                                    <li class="list-item">
+                                        <a id="user" class="list-group-item list-group-item-action bg-dark text-white"
+                                            routerLink="master/user-manager" (click)="user()">
+                                            <span class="menu-collapsed"><img class="side-imag"
+                                                    src="assets/images/multiple-users-silhouette.png">User
+                                                Management</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <section class="all-bg">
+        <div class="col-md-10 dashboardArea" style="height:72vh;width: 100%;">
+            <div class="allpage-bg">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </section>
+</div>
+
+<footer class="main-footer fixed-btm" id="bottom">
+    <div class="container-fluid">
+        <span class="copyright">
+            <a class="footercontent">Copyright&copy; 2019, All Rights Reserved - Daimler </a>
+        </span>
+    </div>
+</footer>

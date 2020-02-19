@@ -1,0 +1,148 @@
+#margin-bottom{
+    margin-bottom: 6px;
+    
+}
+.color{
+    color: red;
+}
+.new-ticket {
+    background: #003b60;
+    border: none;
+    padding-bottom: 5px;
+}
+.new-ticket:hover {
+    box-shadow: 0 0 7px 0 #003b60;
+}
+input.disabled {
+    opacity: 0.5;
+}
+table.table.table-striped {
+    margin-top: 0px;
+}
+th {
+    border-bottom: 1px solid #979797 !important;
+    white-space: nowrap;
+    border-top: 1px solid #979797 !important;
+}
+td {
+    cursor: auto;
+}
+.modal-header {
+    background: #454545;
+    color: #fff;
+   
+}
+
+.new-ticket:hover {
+    box-shadow: 0 0 7px 0 #003b60;
+}
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+    padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #ddd;
+    white-space: nowrap;
+}
+.home-table {
+    background: #fff;
+    box-shadow: 0 2px 6px 0 rgba(0,0,0,.08);
+    border-radius: 8px;
+}
+table.table.invoice-table tbody td {
+    border: none;
+    color: #000;
+    font-family: corpoS-normal;
+    font-size: 15px;
+    vertical-align: middle;
+}
+p.modalHeader {
+    font-size: 17px;
+    font-weight: bold;
+}
+img#img-fluid{
+    padding: 5px 7px 5px 8px;
+    background: #003b60;
+    margin: 0px 0px 0px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 33px;
+}
+.upload-btn{
+    background: #003B60;
+    color: #fff;
+    padding: 3px 12px 5px 8px;
+    font-size: 14px;
+}
+p.all-ticket.mt-2 {
+    padding: 0px 0px 9px 0px !important;
+    font-weight: bold;
+    font-size: 17px;
+}
+ul#list-group {
+    display: flex;
+    list-style: none;
+    border-bottom: 1px solid rgb(151, 151, 151);
+}
+li#list-item1, li#list-item2, li#list-item3 {
+    width: 100%;
+    text-align: center;
+    color: #292929;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+    padding: 8px 0px 8px 0px !important; 
+    cursor: pointer;
+    transition: .2s;
+    font-family: corpoS-bold;
+}
+li#list-item1:after {
+    content: "OR";
+    position: absolute;
+    right: -14px;
+    top: 5px;
+    background: #fff;
+    font-weight: bold;
+    padding: 3px 7px 3px 4px;
+    border-radius: 50%;
+    color: #000;
+    font-size: 14px;
+}
+#downlaod{
+    cursor: pointer;
+    width: 19px;
+    color: #fff !important;
+    margin: 0px 9px 0px 0px;
+}
+#margin{
+    margin-top: 22px;
+    transition: .3s;
+}
+#margin-bottom-trans{
+    transition: .3s;
+}
+a.padtop{
+    font-weight: 100;
+    font-size: 14px;
+}
+a.padtop:hover{
+    text-decoration: none !important;
+}
+.modal-submit{
+    font-size: 17px;
+    font-weight: bold;
+    margin: 0px 0px 16px 0px;
+}
+label.btn.btn-sm.upload-btn.cursor.mt-3:hover {
+    box-shadow: 0 0 7px 0 #003b60;
+}
+h2.tab-head {
+    font-size: 17px;
+    font-weight: bold;
+}
+.form-group.text-field{
+    font-family: corpoS-normal;
+    font-size: 17px;
+}
+h4{
+    font-family: corpoS-bold;
+}

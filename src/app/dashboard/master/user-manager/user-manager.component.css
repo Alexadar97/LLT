@@ -1,0 +1,63 @@
+button.back-btn {
+    padding: 2px 12px;
+    background: #003b60;
+    border: none;
+    color: #fff;
+    border-radius: 3px;
+    margin: 14px 0px;
+}
+label.head {
+    font-size: 19px;
+    font-weight: 100;
+}
+h2.title{
+    font-size: 18px;
+    font-weight: bold;
+}
+section.bg{
+    margin: 18px 0px;
+}
+td {
+    border-top: none !important;
+    color: #003b60d9;
+    padding: 17px 0px 17px 8px !important;
+    text-align: center;
+}
+th {
+    border: none !important;
+    color: #003b60d9;
+    width: 1%;
+    text-align: center;
+}
+thead {
+    border-bottom: 1px solid #c6c2c2;
+}
+table.table.responsive {
+    background: #fff;
+    border: 1px solid #c6c2c2;
+}
+tr:nth-child(odd) {background: #F0F0F0}
+tr:nth-child(even) {background: #fff}
+
+
+#userbutton {
+    position: absolute;
+    top: 34px;
+    right: 17px;
+    background: #003b60;
+}
+
+button.btn.btn-sm.btn-primary.new-ticket {
+    padding: 4px 12px;
+    background: #003b60;
+    border: none;
+    color: #fff;
+    border-radius: 3px;
+    margin: 0px 3px;
+}
+section.master-bg {
+    padding: 16px 0px 0px 0px;
+}
+.red{
+    color: red;
+}
